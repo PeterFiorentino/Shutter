@@ -20,8 +20,8 @@ const upload = multer(
         storage: storage
     })/////
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const userRouter = require('./routes/users');
+
 
 var app = express();
 
@@ -32,8 +32,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', userRouter)
+
 
 
 app.post('/upload',upload.single("image"),(req,res,next) =>{
@@ -45,5 +45,7 @@ res.json({
     imageUrl: imageUrl
 })
 } )
+
+
 
 module.exports = app;

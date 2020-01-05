@@ -8,7 +8,7 @@ const db = require('./db')
 //   res.json([{name: "Jaiden"}, {username: "BxRebel"}]);
 // });
 
-router.get(''), async (req, res) => {
+router.get('/', async (req, res) => {
   try {
       let allUsers = await db.any("SELECT * FROM users");
 
@@ -20,10 +20,11 @@ router.get(''), async (req, res) => {
       res.json ({
           messsage:"Error"
       })
+      console.log(error)
   }
-}
+})
 
-router.get('/:username'), async (req, res) => {
+router.get('/:username', async (req, res) => {
 try {
   let singleUser = await db.one(`SELECT * FROM users WHERE username = ${req.params.username}`);
   res.json({
@@ -37,9 +38,9 @@ try {
       message: "No user associated with this username"
   })
 }
-}
+})
 
-router.post('', async (req, res) => {
+router.post('/post', async (req, res) => {
   try {
       let insertQuery =`INSERT into users(id, username, email) 
       VALUES($1, $2, $3)`
