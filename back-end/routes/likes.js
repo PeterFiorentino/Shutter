@@ -40,6 +40,7 @@ const postLikes = async (req, res) => {
       message: `There was an error!`
     })
   }
+}
 
 
 router.get("/images/:image_id", allLikesSinglePicture)  //- Get all likes for a single image

@@ -54,7 +54,7 @@ const allUserPhotos = async (req, res, next) => {
     }
 }
 
-const postPhoto = async = (req, res, next) => {
+const postPhoto = async (req, res, next) => {
     try {
         let userID = req.params.user;
         let poster = req.params.poster_name;
