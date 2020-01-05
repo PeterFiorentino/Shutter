@@ -45,3 +45,5 @@ const postLikes = async (req, res) => {
 
 router.get("/images/:image_id", allLikesSinglePicture)  //- Get all likes for a single image
 router.post("/images/:image_id/:liker_id", postLikes) //- Post single like
+
+module.exports = router;

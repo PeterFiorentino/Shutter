@@ -25,3 +25,5 @@ router.post('/image/:image_id', async (req, res) => {
         res.json({error: err})
     }
 })
+
+module.exports = router;
