@@ -21,9 +21,9 @@ const upload = multer(
     })/////
 
 const userRouter = require('./routes/users');
-// const imageRouter = require('./routes/images');
-// const hashtagRouter = require('./routes/hashtags');
-// const likesRouter = require('./routes/likes');
+const imageRouter = require('./routes/images');
+const hashtagRouter = require('./routes/hashtags');
+const likesRouter = require('./routes/likes');
 const commentRouter = require('./routes/comments')
 
 
