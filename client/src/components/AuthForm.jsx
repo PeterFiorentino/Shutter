@@ -15,7 +15,7 @@ class AuthForm extends React.Component {
             <div>
                 <h1>Social Media App</h1>
                 <form>
-                    <input type ="text" placeholder = "enter email"></input>
+                    <input type ="text" placeholder = "enter email" required = "required"></input>
                     <button>Login</button>
                 </form>
             </div>
