@@ -6,16 +6,16 @@ CREATE DATABASE database;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    username VARCHAR,
+    username VARCHAR UNIQUE,
     email VARCHAR
 );
 
 CREATE TABLE images (
     id SERIAL PRIMARY KEY, 
-    user_id INT REFERENCES users (id), 
-    poster_name INT REFERENCES users (username), 
-    url VARCHAR,
-    caption VARCHAR,
+    users_id INT REFERENCES users (id), 
+    poster_name VARCHAR REFERENCES users (username), 
+    image_url VARCHAR,
+    caption VARCHAR
 );
 
 CREATE TABLE likes (
@@ -32,5 +32,13 @@ CREATE TABLE comments (
     comment_id SERIAL PRIMARY KEY, 
     comment VARCHAR, 
     image_id INT REFERENCES images (id),
-    commentors_name INT REFERENCES users (username)
+    commentors_name VARCHAR REFERENCES users (username)
 );
+
+INSERT INTO users (username, email)
+    VALUES ('Mariana Aleta', 'ProjectLead@gmail.com'),
+           ('Javed Patrick', 'SeniorFieldResearcher@gmail.com');
+
+
+
+SELECT * FROM images;

@@ -2,7 +2,7 @@
 const express = require('express');
     const router = express.Router();
 // Database 
-const db = require('../db.js');
+const db = require('./db.js');
 
 const allLikes = async (req, res) => {
   try {
