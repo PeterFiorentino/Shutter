@@ -11,8 +11,9 @@ const log = console.log;
 /* MIDDLEWARE */
 const allHashtags = async (req, res, next) => {
     try {
-        const selectQuery = ``;
-        let response = await db.any(getQuery, njkb);
+        let image_id = parseInt(req.params.image_id)
+        const selectQuery = `SELECT hashtag FROM hashtags WHERE image_id = $1;`;
+        let response = await db.any(getQuery, image_id);
         res.json({
             status: "success",
             message: "photos retrieved",
@@ -25,8 +26,9 @@ const allHashtags = async (req, res, next) => {
 }
 const singleHashtagAllPhotos = async (req, res, next) => {
     try {
-        const selectQuery = ``;
-        let response = await db.any(getQuery, njkb);
+        word = req.params.word
+        const selectQuery = `SELECT image_id FROM hashtags JOIN images ON images.id = hashtags.image_id WHERE hashtag = $1;`; //double check later
+        let response = await db.any(selectQuery, word);
         res.json({
             status: "success",
             message: "all photos for single hashtag",
@@ -36,13 +38,11 @@ const singleHashtagAllPhotos = async (req, res, next) => {
         message: `There was an error!`
     }
 }
-    
+
+/* ROUTES */
+router.get("/:image_id", allHashtags); // gets all hashtags
+router.get("/:word", singleHashtagAllPhotos); // get all  photos for one hashtag
 
 
-    /* ROUTES */
-    router.get("/images/", allHashtags); // gets all hashtags
-    router.get("/user/:word", singleHashtagAllPhotos); // get all user's photos
-    
 
-
-    module.exports = router;
+module.exports = router;

@@ -4,49 +4,43 @@ const express = require('express');
 // Database 
 const db = require('./db.js');
 
-const allLikes = async (req, res) => {
+const allLikesSinglePicture = async (req, res) => {
   try {
-    let postId = parseInt(req.params.post_id)
+    let imageId = parseInt(req.params.image_id)
     let getQuery =`
-    SELECT DISTINCT (liker_id), post_id, users.firstname, users.lastname
-    FROM likes JOIN users ON users.user_id = likes.liker_id WHERE post_id IN (
-        SELECT posts.post_id FROM users 
-            INNER JOIN user_holds ON users.user_id = user_holds.holds_user_id 
-            INNER JOIN holds ON user_holds.holds_hold_id = holds.hold_id 
-            INNER JOIN posts ON posts.poster_id = users.user_id
-            WHERE holds.hold_id = $1 AND post_id = $2);`
+    SELECT COUNT(DISTINCT (liker_id)) FROM likes WHERE image_id = $1;`
 
-    let allLikes = await db.any(getQuery, [req.params.hold_id, postId])
+    let allLikes = await db.any(getQuery, imageId)
     res.json({
         payload: allLikes,
-        message: "Yo ho, me hearties! Here be all the likes on all the posts! I'm a pirate server!"
+        message: `got all likes`
     })
 } catch (error) {
     res.json({
-        message: "Oops! All Errors!"
+        message: `There was an error!`
     })
 }
 }
 
 const postLikes = async (req, res) => {
   try {
-    let postId = parseInt(req.params.post_id)
+    let imageId = parseInt(req.params.image_id)
     let likerId = parseInt(req.params.liker_id)
     let insertQuery = `
-    INSERT INTO likes (liker_id, post_id)
+    INSERT INTO likes (liker_id, image_id)
     VALUES($1, $2)
     `
-    let addLike = await db.none(insertQuery, [likerId, postId])
+    let addLike = await db.none(insertQuery, [likerId, imageId])
     res.json({
       payload: req.params,
-      message: "Yarrrrrr! Like added!"
+      message: "Like added!"
     })
   } catch (error) {
     res.json({
-      message: 
+      message: `There was an error!`
     })
   }
 
 
-router.get("/posts/:hold_id/:post_id", allLikes)  //- Get all likes for a single post
-router.post("/posts/:post_id/:liker_id", postLikes) //- Post single like
+router.get("/images/:image_id", allLikesSinglePicture)  //- Get all likes for a single image
+router.post("/images/:image_id/:liker_id", postLikes) //- Post single like
