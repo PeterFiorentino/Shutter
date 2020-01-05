@@ -39,8 +39,6 @@ const singleHashtagAllPhotos = async (req, res, next) => {
     }
 }
 
-
-
 /* ROUTES */
 router.get("/:image_id", allHashtags); // gets all hashtags
 router.get("/:word", singleHashtagAllPhotos); // get all  photos for one hashtag
