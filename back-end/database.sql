@@ -53,6 +53,7 @@ INSERT INTO likes (image_id, liker_id)
            (3,4),
            (4,3);
 
+
 INSERT INTO hashtags (hashtag, image_id)
     VALUES ('#betterAsARocket', 1),
            ('#nothingButHits', 2),
@@ -67,3 +68,4 @@ INSERT INTO comments (comment, image_id, commentors_name)
            ('Who is this?', 4, 'Kadijah Wilson');
 
 SELECT * FROM comments;
+
