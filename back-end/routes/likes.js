@@ -6,17 +6,17 @@ const db = require('./db.js');
 
 const allLikes = async (req, res) => {
   try {
-    let postId = parseInt(req.params.post_id)
+    let imageId = parseInt(req.params.image_id)
     let getQuery =`
-    SELECT DISTINCT (liker_id), post_id, users.firstname, users.lastname
-    FROM likes JOIN users ON users.user_id = likes.liker_id WHERE post_id IN (
-        SELECT posts.post_id FROM users 
+    SELECT DISTINCT (liker_id), image_id
+    FROM likes JOIN users ON users.user_id = likes.liker_id WHERE image_id IN (
+        SELECT images.post_id FROM users 
             INNER JOIN user_holds ON users.user_id = user_holds.holds_user_id 
             INNER JOIN holds ON user_holds.holds_hold_id = holds.hold_id 
             INNER JOIN posts ON posts.poster_id = users.user_id
             WHERE holds.hold_id = $1 AND post_id = $2);`
 
-    let allLikes = await db.any(getQuery, [req.params.hold_id, postId])
+    let allLikes = await db.any(getQuery, [req.params.hold_id, imageId])
     res.json({
         payload: allLikes,
         message: "Yo ho, me hearties! Here be all the likes on all the posts! I'm a pirate server!"
@@ -48,5 +48,5 @@ const postLikes = async (req, res) => {
   }
 }
 
-router.get("/posts/:hold_id/:post_id", allLikes)  //- Get all likes for a single post
-router.post("/posts/:post_id/:liker_id", postLikes) //- Post single like
+router.get("/images/:image_id", allLikes)  //- Get all likes for a single image
+router.post("/images/:image_id/:liker_id", postLikes) //- Post single like

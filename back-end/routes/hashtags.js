@@ -25,8 +25,9 @@ const allHashtags = async (req, res, next) => {
 }
 const singleHashtagAllPhotos = async (req, res, next) => {
     try {
+        word = req.params.word
         const selectQuery = ``;
-        let response = await db.any(getQuery, njkb);
+        let response = await db.any(getQuery, word);
         res.json({
             status: "success",
             message: "all photos for single hashtag",
@@ -40,8 +41,8 @@ const singleHashtagAllPhotos = async (req, res, next) => {
 
 
     /* ROUTES */
-    router.get("/images/", allHashtags); // gets all hashtags
-    router.get("/user/:word", singleHashtagAllPhotos); // get all user's photos
+    router.get("/:image_id", allHashtags); // gets all hashtags
+    router.get("/:word", singleHashtagAllPhotos); // get all  photos for one hashtag
     
 
 
