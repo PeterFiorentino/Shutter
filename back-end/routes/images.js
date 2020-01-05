@@ -40,9 +40,10 @@ const singlePhoto = async (req, res, next) => {
 }
 const allUserPhotos = async (req, res, next) => {
     try {
-        const selectQuery = `SELECT * FROM images`;
+        let user = req.params.user
+        const selectQuery = `SELECT * FROM images WHERE users_id = $1;`;
 
-        let response = await db.any(getQuery);
+        let response = await db.any(getQuery, user);
         res.json({
             status: "success",
             message: "single user photos retrieved",
@@ -51,29 +52,34 @@ const allUserPhotos = async (req, res, next) => {
     } catch (error) {
         message: `There was an error!`
     }
+}
 
-    const postPhoto = async = (req, res, next) => {
-        try {
-            let insertQuery = `INSERT INTO images(users_id, poster_name, image_url, caption) VALUES ($1, $2, $3, $4)  `
-            await db.none(insertQuery, [fhrjesbghregh])
-            res.json({
-                status: "success",
-                message: "single user photos retrieved",
-                body: response
-            });
-        }
-        catch (error) {
-            message: `There was an error!`
-        }
+const postPhoto = async = (req, res, next) => {
+    try {
+        let userID = req.params.user;
+        let poster = req.params.poster_name;
+        let url = req.params.image_url;
+        let caption = req.params.caption;
+        let insertQuery = `INSERT INTO images(users_id, poster_name, image_url, caption) VALUES ($1, $2, $3, $4)`
+        await db.none(insertQuery, [userID, poster, url, caption])
+        res.json({
+            status: "success",
+            message: "single user photos retrieved",
+            body: response
+        });
     }
+    catch (error) {
+        message: `There was an error!`
+    }
+}
 
 
 
-    /* ROUTES */
-    router.get("/", allPhotos); // gets all photos
-    router.get("/:image", singlePhoto); //get single photo
-    router.post("/:user", allUserPhotos); // get all user's photos
-    router.post("/upload", postPhoto); // adds a single photo to a user
+/* ROUTES */
+router.get("/", allPhotos); // gets all photos
+router.get("/:image", singlePhoto); //get single photo
+router.get("/:user", allUserPhotos); // get all user's photos
+router.post("/upload", postPhoto); // adds a single photo to a user
 
 
-    module.exports = router;
+module.exports = router;
