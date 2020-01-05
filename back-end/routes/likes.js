@@ -46,7 +46,7 @@ const postLikes = async (req, res) => {
       message: 
     })
   }
-}
+
 
 router.get("/posts/:hold_id/:post_id", allLikes)  //- Get all likes for a single post
 router.post("/posts/:post_id/:liker_id", postLikes) //- Post single like

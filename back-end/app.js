@@ -21,6 +21,10 @@ const upload = multer(
     })/////
 
 const userRouter = require('./routes/users');
+// const imageRouter = require('./routes/images');
+// const hashtagRouter = require('./routes/hashtags');
+// const likesRouter = require('./routes/likes');
+const commentRouter = require('./routes/comments')
 
 
 var app = express();
@@ -33,8 +37,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/user', userRouter)
-
-
+app.use('/images', imageRouter)
+app.use('/hashtags', hashtagRouter)
+app.use('/likes', likesRouter)
+app.use('/comments', commentRouter)
 
 app.post('/upload',upload.single("image"),(req,res,next) =>{
 console.log("file",req.file) 

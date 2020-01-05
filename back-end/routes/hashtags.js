@@ -35,7 +35,7 @@ const singleHashtagAllPhotos = async (req, res, next) => {
     } catch (error) {
         message: `There was an error!`
     }
-
+}
     
 
 
