@@ -11,8 +11,8 @@ const log = console.log;
 /* MIDDLEWARE */
 const allPhotos = async (req, res, next) => {
     try {
-        const selectQuery = ``;
-        let response = await db.any(getQuery, njkb);
+        const selectQuery = `SELECT * FROM images;`;
+        let response = await db.any(selectQuery);
         res.json({
             status: "success",
             message: "photos retrieved",
@@ -25,7 +25,8 @@ const allPhotos = async (req, res, next) => {
 }
 const allUserPhotos = async (req, res, next) => {
     try {
-        const selectQuery = ``;
+        const selectQuery = `SELECT * FROM images`;
+
         let response = await db.any(getQuery, njkb);
         res.json({
             status: "success",
@@ -38,7 +39,7 @@ const allUserPhotos = async (req, res, next) => {
 
     const postPhoto = async = (req, res, next) => {
         try {
-            let insertQuery = ``
+            let insertQuery = `INSERT INTO images() VALUES ($1, $2)  `
             await db.none(insertQuery, [fhrjesbghregh])
             res.json({
                 status: "success",

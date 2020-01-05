@@ -25,8 +25,7 @@ CREATE TABLE likes (
 
 CREATE TABLE hashtags (
     hashtag VARCHAR,
-    image_id INT REFERENCES images (id),
-
+    image_id INT REFERENCES images (id)
 );
 
 CREATE TABLE comments (
