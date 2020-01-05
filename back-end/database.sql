@@ -41,4 +41,4 @@ INSERT INTO users (username, email)
 
 
 
-SELECT * FROM images;
+-- SELECT * FROM images;
