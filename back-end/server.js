@@ -3,10 +3,11 @@ const app = express();
 const port = 7878;
 
 
-const imageRouter = require('./Routes/images');
-const userRouter = require('./Routes/user');
-const hashtagRouter = require('./Routes/hashtags');
-const likesRouter = require('./Routes/likes');
+const imageRouter = require('./routes/images');
+const userRouter = require('./routes/user');
+const hashtagRouter = require('./routes/hashtags');
+const likesRouter = require('./routes/likes');
+const commentRouter = require('./routes/comments')
 const cors = require('cors')
 
 app.use(cors())
@@ -21,6 +22,7 @@ app.use('/images', imageRouter)
 app.use('/user', userRouter)
 app.use('/hashtags', hashtagRouter)
 app.use('/likes', likesRouter)
+app.use('/comments', commentRouter)
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)

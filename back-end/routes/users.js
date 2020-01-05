@@ -8,7 +8,7 @@ const db = require('./db')
 //   res.json([{name: "Jaiden"}, {username: "BxRebel"}]);
 // });
 
-router.get(''), async (req, res) => {
+router.get('/users'), async (req, res) => {
   try {
       let allUsers = await db.any("SELECT * FROM users");
 
@@ -39,10 +39,10 @@ try {
 }
 }
 
-router.post('', async (req, res) => {
+router.post('/:username', async (req, res) => {
   try {
-      let insertQuery =`INSERT into users(id, username, email) 
-      VALUES($1, $2, $3)`
+      let insertQuery =`INSERT into users(username, email) 
+      VALUES($1, $2)`
 
       if(!req.body.username && !req.body.email){
           res.json({
