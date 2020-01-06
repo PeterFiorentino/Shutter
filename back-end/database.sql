@@ -55,11 +55,11 @@ INSERT INTO likes (image_id, liker_id)
 
 
 INSERT INTO hashtags (hashtag, image_id)
-    VALUES ('#betterAsARocket', 1),
-           ('#nothingButHits', 2),
-           ('#blueBraids', 3),
-           ('#pianoMan', 4),
-           ('#theGOAT', 4);
+    VALUES ('betterAsARocket', 1),
+           ('nothingButHits', 2),
+           ('blueBraids', 3),
+           ('pianoMan', 4),
+           ('theGOAT', 4);
 
 INSERT INTO comments (comment, image_id, commentors_name)
     VALUES ('His cousin is better.', 1, 'PeterFiorentino'),

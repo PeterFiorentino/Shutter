@@ -25,9 +25,9 @@ const allPhotos = async (req, res, next) => {
 }
 const singlePhoto = async (req, res, next) => {
     try {
-        image = req.params.image_id
+        image = req.params.image
         const selectQuery = `SELECT * FROM images WHERE id = $1;`;
-        let response = await db.any(selectQuery, image);
+        let response = await db.one(selectQuery, image);
         res.json({
             status: "success",
             message: "photos retrieved",
@@ -40,10 +40,10 @@ const singlePhoto = async (req, res, next) => {
 }
 const allUserPhotos = async (req, res, next) => {
     try {
-        let user = req.params.user
+        let user = req.params.users_id
         const selectQuery = `SELECT * FROM images WHERE users_id = $1;`;
 
-        let response = await db.any(getQuery, user);
+        let response = await db.any(selectQuery, user);
         res.json({
             status: "success",
             message: "single user photos retrieved",
@@ -56,10 +56,10 @@ const allUserPhotos = async (req, res, next) => {
 
 const postPhoto = async (req, res, next) => {
     try {
-        let userID = req.params.user;
-        let poster = req.params.poster_name;
-        let url = req.params.image_url;
-        let caption = req.params.caption;
+        let userID = req.body.user;
+        let poster = req.body.poster_name;
+        let url = req.body.image_url;
+        let caption = req.body.caption;
         let insertQuery = `INSERT INTO images(users_id, poster_name, image_url, caption) VALUES ($1, $2, $3, $4)`
         await db.none(insertQuery, [userID, poster, url, caption])
         res.json({
@@ -76,10 +76,10 @@ const postPhoto = async (req, res, next) => {
 
 
 /* ROUTES */
-router.get("/", allPhotos); // gets all photos
-router.get("/:image", singlePhoto); //get single photo
-router.get("/:user", allUserPhotos); // get all user's photos
-router.post("/upload", postPhoto); // adds a single photo to a user
 
+router.get("/:image", singlePhoto); //get single photo
+router.get("/users/:users_id", allUserPhotos); // get all user's photos
+router.post("/upload", postPhoto); // adds a single photo to a user
+router.get("/", allPhotos);
 
 module.exports = router;
