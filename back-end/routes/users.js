@@ -8,25 +8,10 @@ const db = require('./db')
 //   res.json([{name: "Jaiden"}, {username: "BxRebel"}]);
 // });
 
-router.get('/', async (req, res) => {
-  try {
-      let allUsers = await db.any("SELECT * FROM users");
-
-      res.json({
-          users: allUsers, 
-          message: "Success"
-      })
-  }catch (error) {
-      res.json ({
-          messsage:"Error"
-      })
-      console.log(error)
-  }
-})
 
 router.get('/:username', async (req, res) => {
 try {
-  let singleUser = await db.one(`SELECT * FROM users WHERE username = ${req.params.username}`);
+  let singleUser = await db.one(`SELECT * FROM users WHERE username = '${req.params.username}'`);
   res.json({
       status: "Success", 
       body: {
@@ -42,8 +27,8 @@ try {
 
 router.post('/post', async (req, res) => {
   try {
-      let insertQuery =`INSERT into users(id, username, email) 
-      VALUES($1, $2, $3)`
+      let insertQuery =`INSERT into users(username, email) 
+      VALUES($1, $2)`
 
       if(!req.body.username && !req.body.email){
           res.json({
@@ -53,7 +38,7 @@ router.post('/post', async (req, res) => {
           await db.none(insertQuery, [req.body.username, req.body.email]);
 
           res.json({
-              user: insertQuery,
+              user: req.body.username + " " + "& " + req.body.email,
               message: "posted"
           })
       }
@@ -62,6 +47,22 @@ router.post('/post', async (req, res) => {
       res.json({
           message: error
       })
+  }
+})
+
+router.get('/', async (req, res) => {
+  try {
+      let allUsers = await db.any("SELECT * FROM users");
+
+      res.json({
+          users: allUsers, 
+          message: "Success"
+      })
+  }catch (error) {
+      res.json ({
+          messsage:"Error"
+      })
+      console.log(error)
   }
 })
 
