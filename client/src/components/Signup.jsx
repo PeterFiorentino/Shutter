@@ -14,7 +14,7 @@ class SignUp extends React.Component{
         e.preventDefault()
         console.log("clicked")
         // <Route path = "/HomePage" component = {HomePage}/>
-        
+        window.location = "HomePage"
 
     }
 

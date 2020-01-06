@@ -9,12 +9,18 @@ class AuthForm extends React.Component {
         super()
 
     }
+    
+    handleSubmit = (e) =>{
+        console.log("form submitted")
+        e.preventDefault()
+        this.props.logIn()
+    }
 
     render(){
         return(
             <div>
-                <h1>Social Media App</h1>
-                <form>
+                <h1>Slide</h1>
+                <form onSubmit = {this.handleSubmit}>
                     <input type ="text" placeholder = "enter email" required = "required"></input>
                     <button>Login</button>
                 </form>
