@@ -19,7 +19,7 @@ font-family: "Monospace";
 font-variant: small-caps;
 font-style: oblique;
 display: flex;
-  flex-wrap: wrap;
-justify-content: space-between;
+flex-wrap: wrap;
+justify-content: space-around;
 flex-direction: row;
 }
