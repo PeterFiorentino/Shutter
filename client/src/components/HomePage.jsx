@@ -1,6 +1,8 @@
 import React from "react"
 import axios from "axios"
 import PictureDisplay from "./PictureDisplay";
+import './CSS/HomePage.css';
+
 
 class HomePage extends React.Component {
     constructor(props) {

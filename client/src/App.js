@@ -14,10 +14,6 @@ class App extends React.Component {
       userName: ""
     }
   }
-
-
-
-  
   
   logIn = () =>{
     this.setState({
@@ -43,16 +39,21 @@ class App extends React.Component {
   render(){
       let {userLoggedIn} = this.state
 
-      
       if (!userLoggedIn){
         return(
         <div className = "App">
-        
-          <nav>
-            <Link to = "/">Shutter</Link>{" "}
-            <Link to = "/SignUp">Sign Up</Link>
-          </nav>
 
+        <header>
+          <div className = "headerLinks">
+          
+            <Link to = "/"> Shutter </Link>
+
+            <Link to = "/SignUp">Sign Up</Link>
+          
+          </div>
+
+          </header>
+                
           <Switch>
           {/* home page route for when the user is not logged in*/}
           <Route exact path = "/"   
@@ -83,7 +84,6 @@ class App extends React.Component {
             <Link to = "/">Shutter</Link> {" "}
             <button onClick = {this.signOut}>Sign Out</button>
           </nav>
-              
             <Switch>
               <Route path = "/" render = {
                 (routeProps) =>{
