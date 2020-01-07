@@ -1,5 +1,4 @@
 import React from "react"
-import {Route} from 'react-router-dom'
 
 class SignUp extends React.Component{
     constructor(){
@@ -13,6 +12,7 @@ class SignUp extends React.Component{
     handleFormSubmit = (e) =>{
         e.preventDefault()
         console.log("clicked")
+        this.props.history.push("/")
         this.props.signUp(this.state.username)
 
     }
@@ -44,11 +44,11 @@ class SignUp extends React.Component{
                     <label htmlFor = "email">Email Address </label>
                     <input  
                     id = "email" 
-                    type = "text"
+                    type = "email"
                     value = {email}
                     onChange = {this.handleEmailChange} 
                     placeholder = "enter email" 
-                    required = "required"/>
+                    required />
                     <br/>
                     <label htmlFor = "username">User Name </label>
                     <input  
@@ -57,7 +57,7 @@ class SignUp extends React.Component{
                     value = {username}
                     onChange = {this.handleUserNameChange}
                     placeholder = "enter UserName" 
-                    required = "required"/>
+                    required />
                     <br/>
                     <button>Submit</button>
                 </form>
