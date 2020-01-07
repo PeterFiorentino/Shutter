@@ -6,26 +6,31 @@ import SignUp from "./components/Signup"
 import HomePage from "./components/HomePage"
 
 
-
-
-
-
-
-
 class App extends React.Component {
   constructor(){
     super()
     this.state = {
-      userLoggedIn: false
-
+      userLoggedIn: false,
+      userName: ""
     }
   }
 
+
+
+  
+  
   logIn = () =>{
     this.setState({
       userLoggedIn: true
     })
 
+  }
+
+  signUp = (userName) =>{
+    this.setState({
+      userLoggedIn: true,
+      userName: userName
+    })
   }
     
   render(){
@@ -53,7 +58,13 @@ class App extends React.Component {
                   }
                 }/>
           {/* sign up route for when a user wants to create an account */}
-          <Route path = "/SignUp"   component = {SignUp}/>
+          <Route path = "/SignUp"  render = {
+            (routeProps) =>{
+              return(
+                <SignUp signUp = {this.signUp}/>
+              )
+            }
+          }/>
           </Switch>
         </div>
         )
@@ -66,7 +77,13 @@ class App extends React.Component {
           </nav>
               
             <Switch>
-              <Route path = "/" component = {HomePage}/>
+              <Route path = "/" render = {
+                (routeProps) =>{
+                  return(
+                    <HomePage userName = {this.state.userName}/>
+                  )
+                }
+              }/>
             </Switch>
         </div>
       )

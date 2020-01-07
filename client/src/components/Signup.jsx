@@ -13,8 +13,7 @@ class SignUp extends React.Component{
     handleFormSubmit = (e) =>{
         e.preventDefault()
         console.log("clicked")
-        // <Route path = "/HomePage" component = {HomePage}/>
-        window.location = "HomePage"
+        this.props.signUp(this.state.username)
 
     }
 
