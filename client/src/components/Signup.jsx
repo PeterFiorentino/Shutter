@@ -15,6 +15,7 @@ class SignUp extends React.Component{
     handleFormSubmit = (e) =>{
         e.preventDefault()
         console.log("clicked")
+        this.props.history.push("/")
         this.props.signUp(this.state.username)
 
     }
@@ -62,7 +63,7 @@ class SignUp extends React.Component{
                     <label htmlFor = "email"> Email: </label>
                     <input  
                     id = "email" 
-                    type = "text"
+                    type = "email"
                     value = {email}
                     onChange = {this.handleEmailChange} 
                     placeholder = "Enter Email" 

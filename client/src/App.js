@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link,Route,Switch, Redirect} from 'react-router-dom'
+import {Link,Route,Switch} from 'react-router-dom'
 import './App.css';
 import AuthForm from "./components/AuthForm"
 import SignUp from "./components/Signup"
@@ -19,14 +19,21 @@ class App extends React.Component {
     this.setState({
       userLoggedIn: true
     })
-
   }
+
+  signOut = () =>{
+    this.setState({
+      userLoggedIn: false
+    })
+  }
+
 
   signUp = (userName) =>{
     this.setState({
       userLoggedIn: true,
       userName: userName
     })
+
   }
     
   render(){
@@ -35,16 +42,14 @@ class App extends React.Component {
       if (!userLoggedIn){
         return(
         <div className = "App">
-        <header>
-          <div className = "headerLinks">
-          
-            <Link to = "/"> Shutter </Link>
+        <header className="headerLinks">
+        
+          <nav>
+            <Link to = "/">Shutter</Link>{" "}
             <Link to = "/SignUp">Sign Up</Link>
+            </nav>
+            </header>
           
-          </div>
-
-          </header>
-                
           <Switch>
           {/* home page route for when the user is not logged in*/}
           <Route exact path = "/"   
@@ -60,19 +65,21 @@ class App extends React.Component {
           <Route path = "/SignUp"  render = {
             (routeProps) =>{
               return(
-                <SignUp signUp = {this.signUp}/>
+                <SignUp history = {routeProps.history} signUp = {this.signUp}/>
               )
             }
           }/>
           </Switch>
-        </div>
+          </div>
         )
-      }else{
+              
+        }else{
       
       return(
         <div className = "App">
           <nav>
             <Link to = "/">Shutter</Link> {" "}
+            <button onClick = {this.signOut}>Sign Out</button>
           </nav>
             <Switch>
               <Route path = "/" render = {

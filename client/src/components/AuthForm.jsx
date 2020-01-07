@@ -6,10 +6,7 @@ import './CSS/AuthForm.css';
 
 
 class AuthForm extends React.Component {
-    constructor(){
-        super()
-
-    }
+    
     
     handleSubmit = (e) =>{
         console.log("form submitted")

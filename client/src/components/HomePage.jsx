@@ -9,25 +9,41 @@ class HomePage extends React.Component {
         super()
         this.state = {
             username: props.userName,
-            pictures: []
+            pictures: [],
+            hashtags: []
         }
     }
     getAllUserPictures = async () => {
         const { username } = this.state
         console.log(username)
-        let response = await axios.get(`http://localhost:3001/images/users/${username}`);
-        console.log(response.data.body)
+        let pictures = await axios.get(`http://localhost:3001/images/users/${username}`);
+        console.log(pictures.data.body)
         this.setState({
-            pictures: response.data.body
+            pictures: pictures.data.body
         })
-
+    }
+    hashtag = async (image_id) => {
+        let newArr = []
+        let hashtags = await axios.get(`http://localhost:3001/hashtags/image/${image_id}`);
+        newArr = [hashtags.data.body]
+        newArr.map((hashtag) => {
+            // console.log(hashtag)
+            newArr = [...newArr, hashtag]
+        })
+        this.setState({
+            hashtags: newArr
+        })
+        
     }
     render() {
         return (
             <div>
-                <h1>Home Page welcome {this.props.userName}</h1>
-                <button onClick={this.getAllUserPictures}>Click me</button>
-                <PictureDisplay pictures = {this.state.pictures}/>
+                <h1>Welcome {this.props.userName}</h1>
+                <button onClick={this.getAllUserPictures}
+                >get picture</button>
+                <PictureDisplay pictures={this.state.pictures} 
+                // getHashtags = {this.hashtag}
+                />
             </div>
         )
 
