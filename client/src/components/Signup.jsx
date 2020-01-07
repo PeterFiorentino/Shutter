@@ -41,25 +41,44 @@ class SignUp extends React.Component{
             <div>
                 <h1>Sign Up</h1>
                 <form onSubmit = {this.handleFormSubmit}>
-                    <label htmlFor = "email">Email Address </label>
+                <label htmlFor = "Firstname ">Firstname: </label>
+                    <input  
+                    id = "fname" 
+                    type = "text"
+                    // value = {firstname}
+                    placeholder = "Enter Firstname" 
+                    required = "required"/>
+                    <br/>
+
+                    <label htmlFor = "Lastname ">Lastname: </label>
+                    <input  
+                    id = "Lname" 
+                    type = "text"
+                    // value = {Lastname}
+                    placeholder = "Enter Lastname" 
+                    required = "required"/>
+                    <br/>
+
+                    <label htmlFor = "email"> Email: </label>
                     <input  
                     id = "email" 
                     type = "text"
                     value = {email}
                     onChange = {this.handleEmailChange} 
-                    placeholder = "enter email" 
+                    placeholder = "Enter Email" 
                     required = "required"/>
                     <br/>
-                    <label htmlFor = "username">User Name </label>
+
+                    <label htmlFor = "username">Username: </label>
                     <input  
                     id = "username" 
                     type = "text" 
                     value = {username}
                     onChange = {this.handleUserNameChange}
-                    placeholder = "enter UserName" 
+                    placeholder = "Enter Username" 
                     required = "required"/>
                     <br/>
-                    <button>Submit</button>
+                    <button> Create Account </button>
                 </form>
             </div>
         )
