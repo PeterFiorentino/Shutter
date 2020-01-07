@@ -1,5 +1,7 @@
 import React from "react"
 import {Route} from 'react-router-dom'
+import './CSS/Signup.css';
+
 
 class SignUp extends React.Component{
     constructor(){
@@ -31,8 +33,6 @@ class SignUp extends React.Component{
         })
     }
 
-    
-    
     
     render(){
         let {email, username} = this.state

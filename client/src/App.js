@@ -38,8 +38,8 @@ class App extends React.Component {
         <header>
           <div className = "headerLinks">
           
-            <Link to = "/"><h2> Shutter </h2></Link>{" "}
-            <Link to = "/SignUp"><h2> Sign Up</h2></Link>
+            <Link to = "/"> Shutter </Link>
+            <Link to = "/SignUp">Sign Up</Link>
           
           </div>
 

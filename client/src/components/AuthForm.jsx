@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link,Route,Switch} from 'react-router-dom'
 import HomePage from './HomePage'
-import './AuthForm.css';
+import './CSS/AuthForm.css';
 
 
 
