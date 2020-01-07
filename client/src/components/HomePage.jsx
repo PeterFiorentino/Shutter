@@ -10,7 +10,7 @@ class HomePage extends React.Component {
             pictures: []
         }
     }
-    getAllPictures = async () => {
+    getAllUserPictures = async () => {
         const { username } = this.state
         console.log(username)
         let response = await axios.get(`http://localhost:3001/images/users/${username}`);
@@ -24,7 +24,7 @@ class HomePage extends React.Component {
         return (
             <div>
                 <h1>Home Page welcome {this.props.userName}</h1>
-                <button onClick={this.getAllPictures}>Click me</button>
+                <button onClick={this.getAllUserPictures}>Click me</button>
                 <PictureDisplay pictures = {this.state.pictures}/>
             </div>
         )
