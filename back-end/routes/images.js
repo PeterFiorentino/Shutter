@@ -40,8 +40,8 @@ const singlePhoto = async (req, res, next) => {
 }
 const allUserPhotos = async (req, res, next) => {
     try {
-        let user = req.params.users_id
-        const selectQuery = `SELECT * FROM images WHERE users_id = $1;`;
+        let user = req.params.poster_name
+        const selectQuery = `SELECT * FROM images WHERE poster_name = $1;`;
 
         let response = await db.any(selectQuery, user);
         res.json({
@@ -78,7 +78,7 @@ const postPhoto = async (req, res, next) => {
 /* ROUTES */
 
 router.get("/:image", singlePhoto); //get single photo
-router.get("/users/:users_id", allUserPhotos); // get all user's photos
+router.get("/users/:poster_name", allUserPhotos); // get all user's photos
 router.post("/upload", postPhoto); // adds a single photo to a user
 router.get("/", allPhotos);
 
