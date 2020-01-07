@@ -5,11 +5,9 @@ import './CSS/AuthForm.css';
 
 
 
-class AuthForm extends React.Component {
-    constructor(){
-        super()
 
-    }
+class AuthForm extends React.Component {
+    
     
     handleSubmit = (e) =>{
         console.log("form submitted")
@@ -26,6 +24,7 @@ class AuthForm extends React.Component {
                 <h1>Shutter</h1>
                 <form onSubmit = {this.handleSubmit}>
                     <input type ="text" placeholder = "Enter Email" required ></input>
+
                     <button>Login</button>
                 </form>
                 </div>
