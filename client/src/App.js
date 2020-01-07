@@ -5,6 +5,7 @@ import AuthForm from "./components/AuthForm"
 import SignUp from "./components/Signup"
 import HomePage from "./components/HomePage"
 import Profile from "./components/Profile"
+import imageDisplay from './components/DisplayProfile';
 
 
 
@@ -24,7 +25,8 @@ class App extends React.Component {
 
   logIn = () =>{
     this.setState({
-      userLoggedIn: true
+      userLoggedIn: true,
+      name: "PeterFiorentino"
     })
 
   }
@@ -68,7 +70,12 @@ class App extends React.Component {
               
             <Switch>
               <Route exact path = "/" component = {HomePage}/>
-              <Route path = "/profile" component = {Profile}/>
+              <Route path = "/profile" component = {Profile} render = {
+                  (routeProps) =>{ 
+                  return( 
+                  <imageDisplay />)
+                  }
+                }/>
             </Switch>
         </div>
       )
