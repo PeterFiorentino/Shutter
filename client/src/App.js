@@ -8,27 +8,31 @@ import Profile from "./components/Profile"
 import imageDisplay from './components/DisplayProfile';
 
 
-
-
-
-
-
-
 class App extends React.Component {
   constructor(){
     super()
     this.state = {
-      userLoggedIn: false
-
+      userLoggedIn: false,
+      userName: ""
     }
   }
 
+
+
+  
+  
   logIn = () =>{
     this.setState({
-      userLoggedIn: true,
-      name: "PeterFiorentino"
+      userLoggedIn: true
     })
 
+  }
+
+  signUp = (userName) =>{
+    this.setState({
+      userLoggedIn: true,
+      userName: userName
+    })
   }
     
   render(){
@@ -56,7 +60,13 @@ class App extends React.Component {
                   }
                 }/>
           {/* sign up route for when a user wants to create an account */}
-          <Route path = "/SignUp"   component = {SignUp}/>
+          <Route path = "/SignUp"  render = {
+            (routeProps) =>{
+              return(
+                <SignUp signUp = {this.signUp}/>
+              )
+            }
+          }/>
           </Switch>
         </div>
         )
@@ -69,13 +79,21 @@ class App extends React.Component {
           </nav>
               
             <Switch>
-              <Route exact path = "/" component = {HomePage}/>
-              <Route path = "/profile" component = {Profile} render = {
-                  (routeProps) =>{ 
-                  return( 
-                  <imageDisplay />)
-                  }
-                }/>
+              
+              <Route path = "/profile" render = {
+                (routeProps) => {
+                  return(
+                    <Profile userName = {this.state.userName}/>
+                  )
+                }
+               } />
+              <Route path = "/" render = {
+                (routeProps) =>{
+                  return(
+                    <HomePage userName = {this.state.userName}/>
+                  )
+                }
+              }/>
             </Switch>
         </div>
       )

@@ -1,13 +1,21 @@
 import React from "react"
+import {Route, Link, Switch} from "react-router-dom";
 
 
-const Profile = () =>{
-    return (
-        <div>
-            <h1>Profile</h1>
+class  Profile extends React.Component{
+    constructor(){
+        super()
+    }
+    
+    render(){
+        return (
+            <div>
+                <h1>{this.props.userName}'s Profile</h1>
+            </div>
+        )
 
-        </div>
-    )
+    }
+    
 }
 
 export default Profile
