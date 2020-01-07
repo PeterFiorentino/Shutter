@@ -1,13 +1,14 @@
 import React from 'react';
 import Picture from './Picture';
 
-const PictureDisplay = (props) => {
+const PictureDisplay = (props) => { 
     return(
-        props.urls.map((picture) => {
-            let key = props.urls.indexOf(picture);
+        props.pictures.map((picture) => {
             return (
-                <Picture url = {picture}
-                key = {key}
+                <Picture url = {picture.image_url}
+                key = {picture.id}
+                alt = {picture.alt}
+                caption = {picture.caption}
                 />
             )
         })
