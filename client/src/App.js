@@ -4,6 +4,7 @@ import './App.css';
 import AuthForm from "./components/AuthForm"
 import SignUp from "./components/Signup"
 import HomePage from "./components/HomePage"
+import Profile from "./components/Profile"
 
 
 
@@ -66,7 +67,8 @@ class App extends React.Component {
           </nav>
               
             <Switch>
-              <Route path = "/" component = {HomePage}/>
+              <Route exact path = "/" component = {HomePage}/>
+              <Route path = "/profile" component = {Profile}/>
             </Switch>
         </div>
       )
