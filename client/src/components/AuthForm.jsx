@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link,Route,Switch} from 'react-router-dom'
 import HomePage from './HomePage'
+import './AuthForm.css';
 
 
 
@@ -18,12 +19,16 @@ class AuthForm extends React.Component {
 
     render(){
         return(
-            <div>
-                <h1>Slide</h1>
+        <div className = "img">
+            <img src="https://premiumbpthemes.com/images/clipart-camera-square-8.png" alt="camera"/>
+        
+        <div className = "AppTwo">
+                <h1>Shutter</h1>
                 <form onSubmit = {this.handleSubmit}>
                     <input type ="text" placeholder = "enter email" required = "required"></input>
                     <button>Login</button>
                 </form>
+                </div>
             </div>
         )
     }

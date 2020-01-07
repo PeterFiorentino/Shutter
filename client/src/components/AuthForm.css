@@ -1,0 +1,44 @@
+/* .img {
+display: inline-block;
+width: 50vh;
+text-align: center;
+position: absolute;
+z-index: 99;
+margin: 0 auto;
+left: 0;
+right: 0;
+top: 25%;
+} */
+
+img {
+display: inline-block;
+width: 90vh;
+text-align: center;
+position: absolute;
+z-index: 99;
+margin: 0 auto;
+left: 0;
+right: 0;
+top: 10%;
+/* height:100vh; */
+}
+
+.AppTwo  {
+font-family: "Monospace";
+font-variant: small-caps;
+font-style: oblique;
+text-align: center;
+position: absolute;
+z-index: 99;
+margin: 0 auto;
+left: 7%;
+right: 0;
+top: 53%;
+bottom: 25%;
+width: 19vh;
+/* border: 6px double #1198F3; */
+border: 6px double #65C2C1;
+border-radius: 80px 80px 80px 80px;
+background-color:#b6bcbf;
+}
+

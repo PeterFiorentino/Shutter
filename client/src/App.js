@@ -7,11 +7,6 @@ import HomePage from "./components/HomePage"
 
 
 
-
-
-
-
-
 class App extends React.Component {
   constructor(){
     super()
@@ -31,16 +26,19 @@ class App extends React.Component {
   render(){
       let {userLoggedIn} = this.state
 
-      
       if (!userLoggedIn){
         return(
         <div className = "App">
-        
-          <nav>
-            <Link to = "/">Slide</Link>{" "}
-            <Link to = "/SignUp">Sign Up</Link>
-          </nav>
+        <header>
+          <div className = "headerLinks">
+          
+            <Link to = "/"><h2> Shutter </h2></Link>{" "}
+            <Link to = "/SignUp"><h2> Sign Up</h2></Link>
+          
+          </div>
 
+          </header>
+                
           <Switch>
           {/* home page route for when the user is not logged in*/}
           <Route exact path = "/"   
@@ -62,9 +60,8 @@ class App extends React.Component {
       return(
         <div className = "App">
           <nav>
-            <Link to = "/">Slide</Link> {" "}
+            <Link to = "/">Shutter</Link> {" "}
           </nav>
-              
             <Switch>
               <Route path = "/" component = {HomePage}/>
             </Switch>
