@@ -11,10 +11,10 @@ class HomePage extends React.Component {
             hashtags: []
         }
     }
-    getAllUserPictures = async () => {
+    getAllPictures = async () => {
         const { username } = this.state
         console.log(username)
-        let pictures = await axios.get(`http://localhost:3001/images/users/${username}`);
+        let pictures = await axios.get(`http://localhost:3001/images/`);
         console.log(pictures.data.body)
         this.setState({
             pictures: pictures.data.body
@@ -37,7 +37,7 @@ class HomePage extends React.Component {
         return (
             <div>
                 <h1>Welcome {this.props.userName}</h1>
-                <button onClick={this.getAllUserPictures}
+                <button onClick={this.getAllPictures}
                 >get picture</button>
                 <PictureDisplay pictures={this.state.pictures} 
                 // getHashtags = {this.hashtag}
