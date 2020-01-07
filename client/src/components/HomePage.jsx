@@ -6,12 +6,9 @@ class HomePage extends React.Component {
     constructor(props) {
         super()
         this.state = {
-<<<<<<< HEAD
-=======
             username: props.userName,
             pictures: [],
             hashtags: []
->>>>>>> b19c5179046be9640251e35672143bae219862f7
         }
     }
     getAllUserPictures = async () => {
