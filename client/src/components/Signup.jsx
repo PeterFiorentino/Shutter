@@ -2,7 +2,10 @@ import React from "react"
 import {Route} from 'react-router-dom'
 import './CSS/Signup.css';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 55151adff2732759f41f29aef52b308018a943ac
 class SignUp extends React.Component{
     constructor(){
         super();
