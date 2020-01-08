@@ -11,7 +11,8 @@ class App extends React.Component {
     super()
     this.state = {
       userLoggedIn: false,
-      userName: ""
+      userName: "",
+      email: ""
     }
   }
   
@@ -28,10 +29,11 @@ class App extends React.Component {
   }
 
 
-  signUp = (userName) =>{
+  signUp = (userName, email) =>{
     this.setState({
       userLoggedIn: true,
-      userName: userName
+      userName: userName,
+      email: email
     })
 
   }
@@ -88,7 +90,8 @@ class App extends React.Component {
               <Route path = "/" render = {
                 (routeProps) =>{
                   return(
-                    <HomePage userName = {this.state.userName}/>
+                    <HomePage userName = {this.state.userName}
+                    email = {this.state.email}/>
                   )
                 }
               }/>
