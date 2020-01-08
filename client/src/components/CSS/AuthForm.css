@@ -43,15 +43,22 @@ top: 10%;
     background-color: #b6bcbf; */
 }
 
-button {
-    background-color: white;
-    color: black;
-    border: 1px solid black;
+.loginBtn {
+    border-radius: 100px;
+    border-color: #1da1f2;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    position: relative;
+    text-align: center;
+    width: 70px;
+    height: 40px;
 }
 
 button:hover {
     /* background-color: blue; */
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: RGB(0, 132, 180);
     color:white;
 }
 
@@ -66,4 +73,6 @@ button:hover {
 .loginBtn {
     position: absolute;
     top: 55%;
+    border-radius: 20px;
+
 }

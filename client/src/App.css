@@ -28,9 +28,20 @@ font-size: 30px;
 .signBtn{
   /* margin: 28% 9% 7% 13%; */
   position: absolute;
-  top: 50%;
+  top: 38%;
   right: 30%;
   /* bottom: 0%; */
   z-index: 52;
+    /* color: #1da1f2; */
+    border-radius: 100px;
+    border-color: #1da1f2;
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 20px;
+    /* position: relative; */
+    text-align: center;
+    width: 70px;
+    height: 40px;
 }
 
