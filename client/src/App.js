@@ -43,11 +43,12 @@ class App extends React.Component {
         return(
         <div className = "App">
         <header className="headerLinks">
-        
-          <nav>
-            <Link to = "/">Shutter</Link>{" "}
+         <h1> Shutter </h1>
+            <button className="signBtn">
             <Link to = "/SignUp">Sign Up</Link>
-            </nav>
+            </button>
+            
+          
             </header>
           
           <Switch>

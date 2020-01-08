@@ -44,6 +44,7 @@ class SignUp extends React.Component{
             
                 <h1>Create Account </h1>
                 <form onSubmit = {this.handleFormSubmit}>
+                    
                 <i  class="fas fa-user icon"></i>
                 <label htmlFor = "name ">Name:  </label>
                     <input className="signupForm"

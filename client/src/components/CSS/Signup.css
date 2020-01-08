@@ -10,6 +10,7 @@ width: 65%;
 margin: 8%;
 position: absolute;
 left: 9%;
+z-index: 55;
 }
 
 .signupForm {
