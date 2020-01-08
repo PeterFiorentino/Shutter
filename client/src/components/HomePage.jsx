@@ -1,22 +1,56 @@
 import React from "react"
 import Profile from "./Profile"
 import {Route, Link, Switch} from "react-router-dom";
+import axios from "axios"
+import PictureDisplay from "./PictureDisplay";
 
-class  HomePage extends React.Component{
-    constructor(){
+class HomePage extends React.Component {
+    constructor(props) {
         super()
+        this.state = {
+            username: props.userName,
+            pictures: [],
+            hashtags: []
+        }
     }
-    
-    render(){
+    getAllUserPictures = async () => {
+        const { username } = this.state
+        console.log(username)
+        let pictures = await axios.get(`http://localhost:3001/images/users/${username}`);
+        console.log(pictures.data.body)
+        this.setState({
+            pictures: pictures.data.body
+        })
+    }
+    hashtag = async (image_id) => {
+        let newArr = []
+        let hashtags = await axios.get(`http://localhost:3001/hashtags/image/${image_id}`);
+        newArr = [hashtags.data.body]
+        newArr.map((hashtag) => {
+            // console.log(hashtag)
+            newArr = [...newArr, hashtag]
+        })
+        this.setState({
+            hashtags: newArr
+        })
+        
+    }
+    render() {
         return (
             <div>
-                <h1>Home Page welcome {this.props.userName}</h1>
-                <Link to="/profile">Profile</Link>
+
+                <h1>Welcome {this.props.userName}</h1>
+                <button onClick={this.getAllUserPictures}
+                >get picture</button>
+                <PictureDisplay pictures={this.state.pictures} 
+                // getHashtags = {this.hashtag}
+                />
+                <Link to = "/profile">Profile</Link>
             </div>
         )
 
     }
-    
+
 }
 
 export default HomePage

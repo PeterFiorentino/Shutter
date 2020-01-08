@@ -43,13 +43,13 @@ app.use('/likes', likesRouter)
 app.use('/comments', commentRouter)
 
 app.post('/upload',upload.single("image"),(req,res,next) =>{
-console.log("file",req.file) 
-console.log("body",req.body)
-let imageUrl = "http://localhost:3001/" + req.file.path.replace('public/','')
-res.json({
-    message: "file uploaded",
-    imageUrl: imageUrl
-})
+    console.log("file",req.file) 
+    console.log("body",req.body)
+    let imageURL = "http://localhost:3001" + req.file.path.replace('public','')
+    res.json({
+        message: "file uploaded",
+        imageUrl: imageURL
+    })
 } )
 
 

@@ -40,8 +40,8 @@ const singlePhoto = async (req, res, next) => {
 }
 const allUserPhotos = async (req, res, next) => {
     try {
-        let user = req.params.users_id
-        const selectQuery = `SELECT * FROM images WHERE users_id = $1;`;
+        let user = req.params.poster_name
+        const selectQuery = `SELECT * FROM images WHERE poster_name = $1;`;
 
         let response = await db.any(selectQuery, user);
         res.json({
@@ -55,13 +55,13 @@ const allUserPhotos = async (req, res, next) => {
 }
 
 const postPhoto = async (req, res, next) => {
+    console.log("upload req body", req.body)
     try {
-        let userID = req.body.user;
         let poster = req.body.poster_name;
         let url = req.body.image_url;
         let caption = req.body.caption;
-        let insertQuery = `INSERT INTO images(users_id, poster_name, image_url, caption) VALUES ($1, $2, $3, $4)`
-        await db.none(insertQuery, [userID, poster, url, caption])
+        let insertQuery = `INSERT INTO images(poster_name, image_url, caption) VALUES ($1, $2, $3)`
+        await db.none(insertQuery, [poster, url, caption])
         res.json({
             status: "success",
             message: "single user photos retrieved",
@@ -78,7 +78,7 @@ const postPhoto = async (req, res, next) => {
 /* ROUTES */
 
 router.get("/:image", singlePhoto); //get single photo
-router.get("/users/:users_id", allUserPhotos); // get all user's photos
+router.get("/users/:poster_name", allUserPhotos); // get all user's photos
 router.post("/upload", postPhoto); // adds a single photo to a user
 router.get("/", allPhotos);
 
