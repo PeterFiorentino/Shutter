@@ -4,6 +4,8 @@ import './App.css';
 import AuthForm from "./components/AuthForm"
 import SignUp from "./components/Signup"
 import HomePage from "./components/HomePage"
+import Profile from "./components/Profile"
+import imageDisplay from './components/DisplayProfile';
 
 
 class App extends React.Component {
@@ -85,6 +87,14 @@ class App extends React.Component {
             <button onClick = {this.signOut}>Sign Out</button>
           </nav>
             <Switch>
+              
+              <Route path = "/profile" render = {
+                (routeProps) => {
+                  return(
+                    <Profile userName = {this.state.userName}/>
+                  )
+                }
+               } />
               <Route path = "/" render = {
                 (routeProps) =>{
                   return(
