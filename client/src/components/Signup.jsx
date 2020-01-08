@@ -1,11 +1,8 @@
 import React from "react"
 import {Route} from 'react-router-dom'
 import './CSS/Signup.css';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 55151adff2732759f41f29aef52b308018a943ac
 class SignUp extends React.Component{
     constructor(){
         super();
@@ -42,11 +39,13 @@ class SignUp extends React.Component{
         let {email, username} = this.state
 
         return (
+           
             <div>
-                <h1>Sign Up</h1>
+            
+                <h1>Create Account </h1>
                 <form onSubmit = {this.handleFormSubmit}>
                 <label htmlFor = "Firstname ">Firstname: </label>
-                    <input  
+                    <input className="signupForm"
                     id = "fname" 
                     type = "text"
                     // value = {firstname}
@@ -55,7 +54,7 @@ class SignUp extends React.Component{
                     <br/>
 
                     <label htmlFor = "Lastname ">Lastname: </label>
-                    <input  
+                    <input  className="signupForm"
                     id = "Lname" 
                     type = "text"
                     // value = {Lastname}
@@ -63,8 +62,9 @@ class SignUp extends React.Component{
                     required = "required"/>
                     <br/>
 
+                    <i class="fas fa-envelope"></i>
                     <label htmlFor = "email"> Email: </label>
-                    <input  
+                    <input  className="signupForm"
                     id = "email" 
                     type = "email"
                     value = {email}
@@ -74,7 +74,7 @@ class SignUp extends React.Component{
                     <br/>
 
                     <label htmlFor = "username">Username: </label>
-                    <input  
+                    <input  className="signupForm"
                     id = "username" 
                     type = "text" 
                     value = {username}
@@ -82,7 +82,7 @@ class SignUp extends React.Component{
                     placeholder = "Enter Username" 
                     required = "required"/>
                     <br/>
-                    <button> Create Account </button>
+                    <button id="createButton"> Create Account </button>
                 </form>
             </div>
         )
