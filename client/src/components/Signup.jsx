@@ -40,39 +40,32 @@ class SignUp extends React.Component{
 
         return (
            
-            <div>
+            <div className= "createAcc">
             
                 <h1>Create Account </h1>
                 <form onSubmit = {this.handleFormSubmit}>
-                <label htmlFor = "Firstname ">Firstname: </label>
+                <i  class="fas fa-user icon"></i>
+                <label htmlFor = "name ">Name:  </label>
                     <input className="signupForm"
-                    id = "fname" 
+                    id = "name" 
                     type = "text"
-                    // value = {firstname}
-                    placeholder = "Enter Firstname" 
+                    // value = {name}
+                    placeholder = "Enter Name" 
                     required = "required"/>
                     <br/>
 
-                    <label htmlFor = "Lastname ">Lastname: </label>
-                    <input  className="signupForm"
-                    id = "Lname" 
-                    type = "text"
-                    // value = {Lastname}
-                    placeholder = "Enter Lastname" 
-                    required = "required"/>
-                    <br/>
-
-                    <i class="fas fa-envelope"></i>
+                    <i  class="fas fa-envelope icon"></i>
                     <label htmlFor = "email"> Email: </label>
                     <input  className="signupForm"
                     id = "email" 
                     type = "email"
                     value = {email}
                     onChange = {this.handleEmailChange} 
-                    placeholder = "Enter Email" 
+                    placeholder =  "Enter Email" 
                     required = "required"/>
-                    <br/>
+                    <br/> 
 
+                    <i id="input-icon" class="fas fa-check"></i>
                     <label htmlFor = "username">Username: </label>
                     <input  className="signupForm"
                     id = "username" 
