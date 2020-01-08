@@ -15,7 +15,7 @@ class SignUp extends React.Component{
         e.preventDefault()
         console.log("clicked")
         this.props.history.push("/")
-        this.props.signUp(this.state.username)
+        this.props.signUp(this.state.username, this.state.email)
 
     }
 
