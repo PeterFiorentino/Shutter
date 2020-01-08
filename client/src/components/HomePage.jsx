@@ -14,7 +14,9 @@ class HomePage extends React.Component {
             imageFile: null,
             uploadedCaption: '',
             uploadedHashtag: [],
-            message: ''
+            message: '',
+            checkbox: false,
+            alt: ''
         }
     }
     getAllPictures = async () => {
@@ -57,17 +59,24 @@ class HomePage extends React.Component {
     }
     imgToDatabase = async () => {
         console.log("hi")
-        const { username, imageURL, uploadedCaption } = this.state;
-        console.log(username, imageURL, uploadedCaption)
+        const { username, imageURL, uploadedCaption, checkbox, alt } = this.state;
+        console.log(username, imageURL, uploadedCaption, checkbox)
+        let altText = ''
+        if (!checkbox) {
+            altText = `${username} uploaded a photo`
+            console.log('false', altText)
+        } else {
+             altText = alt
+            console.log('true', altText)
+        }
         try {
             console.log("hi try")
-            const res = await axios.post('http://localhost:3001/images/upload', { poster_name: username, image_url: imageURL, caption: uploadedCaption })
+            const res = await axios.post('http://localhost:3001/images/upload', { poster_name: username, image_url: imageURL, caption: uploadedCaption, alt: altText })
             console.log(res.data.body)
         } catch (err) {
             console.log(err)
         }
     }
-
     handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -100,17 +109,39 @@ class HomePage extends React.Component {
             uploadedHashtag: event.target.value
         })
     }
+    selectAlt = (event) => {
+        const {checkbox} = this.state
+        this.setState({
+            checkbox: !checkbox
+        })
+    }
+    componentDidUpdate(){
+        console.log('updated')
+    }
+    handleAltChange = (event) => {
+        console.log('alt text changed', event.target.value)
+        this.setState({
+            alt: event.target.value
+        })
+    }
     render() {
+        const {checkbox} = this.state
+        console.log(this.props)
         return (
             <div>
                 <h1>Welcome {this.props.userName}</h1>
+                <h3>{this.props.email}</h3>
                 <form onSubmit={this.handleSubmit}>
                     <input type='file' onChange={this.handleFileInput} required />
-                    <br></br>
-                    <label htmlFor='caption'>Caption <input name='caption' type='text' placeholder='Enter a caption' onChange={this.handleCaptionChange} /></label>
-                    <br></br>
-                    <label htmlFor='hashtag'>Hashtag <input name='hashtag' type='text' placeholder='Add hashtags' onChange={this.handleHashtagChange} /></label>
-                    <br></br>
+                    {/* <br></br> */}
+                    <label htmlFor='caption'>Caption <input name='caption' type='text' placeholder='Enter a caption' onChange={this.handleCaptionChange} /> </label>
+                    {/* <br></br> */}
+                    <label htmlFor='hashtag'>Hashtag <input name='hashtag' type='text' placeholder='Add hashtags' onChange={this.handleHashtagChange} /> </label>
+                    <label htmlFor='alt'> Add alternate text<input name='alt' type='checkbox' value='checked' onChange={this.selectAlt} /></label>
+                    {checkbox ?
+                    <input name='altText' type='text' placeholder='Add Alt text' onChange={this.handleAltChange} required/> : 
+                    null}
+                    {/* <br></br> */}
                     <input type='submit' value='Upload' />
                 </form>
                 <button onClick={this.getAllPictures}>get picture</button>
