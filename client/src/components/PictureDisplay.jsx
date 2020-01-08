@@ -19,7 +19,8 @@ const PictureDisplay = (props) => {
 
                 />
             )
-        })
+        }
+        )
     )
 }
 
