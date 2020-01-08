@@ -1,4 +1,6 @@
 import React from "react"
+import Profile from "./Profile"
+import {Route, Link, Switch} from "react-router-dom";
 import axios from "axios"
 import PictureDisplay from "./PictureDisplay";
 import './CSS/HomePage.css';
@@ -38,12 +40,14 @@ class HomePage extends React.Component {
     render() {
         return (
             <div>
+
                 <h1>Welcome {this.props.userName}</h1>
                 <button onClick={this.getAllUserPictures}
                 >get picture</button>
                 <PictureDisplay pictures={this.state.pictures} 
                 // getHashtags = {this.hashtag}
                 />
+                <Link to = "/profile">Profile</Link>
             </div>
         )
 
