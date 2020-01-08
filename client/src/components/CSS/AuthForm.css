@@ -23,12 +23,15 @@ top: 10%;
 /* height:100vh; */
 }
 
-.AppTwo  {
+h1{
     font-family: "Monospace";
     font-feature-settings: "c2sc";
     font-variant: small-caps;
     font-style: oblique;
     text-align: center;
+}
+
+.AppTwo  {
     position: absolute;
     z-index: 52;
     margin: 0 auto;
@@ -67,6 +70,7 @@ button:hover {
     /* padding: 5px 5px; */
     position: absolute;
     top: 34%;
+    width: 65%;
     /* margin: 5px 0; */
 }
 

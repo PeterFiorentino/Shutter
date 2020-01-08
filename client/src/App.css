@@ -1,17 +1,13 @@
-.App {
-  text-align: center;
+body, .root, .App {
+  height: 100vh;
 }
 
-
-/* header{
-  background-color: #65C2C1;
-  margin: 30px auto;
-  padding: 10px;
-  height: 40px;
-  width: 70%;
-  
-} */
-
+.App {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 25% 25% 25% 25%;
+}
 
 .headerLinks {
 margin-top: 0px;
@@ -27,21 +23,21 @@ font-size: 30px;
 
 .signBtn{
   /* margin: 28% 9% 7% 13%; */
-  position: absolute;
-  top: 38%;
-  right: 30%;
+  /* position: absolute;
+  top: 38vh;
+  right: 30vh; */
   /* bottom: 0%; */
-  z-index: 52;
     /* color: #1da1f2; */
     border-radius: 100px;
     border-color: #1da1f2;
     padding: 5px;
     font-size: 15px;
     font-weight: bold;
-    line-height: 20px;
+    /* line-height: 20px; */
     /* position: relative; */
     text-align: center;
     width: 70px;
     height: 40px;
+    z-index: 52;
 }
 
