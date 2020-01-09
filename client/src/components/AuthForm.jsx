@@ -20,6 +20,7 @@ class AuthForm extends React.Component {
             <img id="camera" src="https://premiumbpthemes.com/images/clipart-camera-square-8.png" alt="camera"/>
         
         <div className = "AppTwo">
+
                 {/* <h1>Shutter</h1> */}
                 <form onSubmit = {this.handleSubmit}>
                     <input className= "login" type ="text" placeholder = "Enter Email" required ></input>
