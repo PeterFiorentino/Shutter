@@ -20,6 +20,7 @@ class HomePage extends React.Component {
             checkbox: false,
             alt: '',
             search: ''
+
         }
     }
     getAllPictures = async () => {
@@ -28,7 +29,7 @@ class HomePage extends React.Component {
         let newArr = [];
         let response = await axios.get(`http://localhost:3001/images/`);
 
-        // console.log('data', response.data.body)
+        console.log('data', response.data.body)
         // console.log('pictures', pictures)
         arr = response.data.body
         arr.map((picture) => {
@@ -82,7 +83,7 @@ class HomePage extends React.Component {
         }
         try {
             console.log("hi try")
-            const res = await axios.post('http://localhost:3001/images/upload', { poster_name: username, image_url: imageURL, caption: uploadedCaption, alt: altText })
+            const res = await axios.post('http://localhost:3001/images/upload', {poster_name: username, image_url: imageURL, caption: uploadedCaption, alt: altText })
             console.log(res.data.body)
         } catch (err) {
             console.log(err)
@@ -90,14 +91,13 @@ class HomePage extends React.Component {
     }
     handleSubmit = async (event) => {
         event.preventDefault();
-
         const data = new FormData();
         console.log(data)
         data.append("image", this.state.imageFile)
         console.log(data)
         try {
             const res = await axios.post('http://localhost:3001/upload', data)
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({
                 imageURL: res.data.imageUrl,
                 message: "Image uploaded!"
