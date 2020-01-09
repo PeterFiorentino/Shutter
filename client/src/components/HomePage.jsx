@@ -16,7 +16,8 @@ class HomePage extends React.Component {
             uploadedHashtag: [],
             message: '',
             checkbox: false,
-            alt: ''
+            alt: '',
+            search: ''
         }
     }
     getAllPictures = async () => {
@@ -124,11 +125,19 @@ class HomePage extends React.Component {
             alt: event.target.value
         })
     }
+    handleSearchChange = (event) => {
+        this.setState({
+            search: event.target.value
+        })
+    }
     render() {
         const {checkbox} = this.state
         console.log(this.props)
         return (
             <div>
+                <form id = 'search' onSubmit = {this.handleSearchSubmit}>
+                    <input type = 'text'/>
+                </form>
                 <h1>Welcome {this.props.userName}</h1>
                 <h3>{this.props.email}</h3>
                 <form onSubmit={this.handleSubmit}>
