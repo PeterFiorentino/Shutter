@@ -4,6 +4,7 @@ import './App.css';
 import AuthForm from "./components/AuthForm"
 import SignUp from "./components/Signup"
 import HomePage from "./components/HomePage"
+import Menu from './components/hamburgerMenu';
 
 
 class App extends React.Component {
@@ -82,7 +83,7 @@ class App extends React.Component {
         <div className = "App">
           <nav>
             <Link to = "/">Shutter</Link> {" "}
-            <button onClick = {this.signOut}>Sign Out</button>
+            {/* <Menu signOut = {this.signOut}/> */}
           </nav>
             <Switch>
               <Route path = "/" render = {
