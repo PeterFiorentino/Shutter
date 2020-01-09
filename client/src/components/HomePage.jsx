@@ -1,4 +1,6 @@
 import React from "react"
+import Profile from "./Profile"
+import {Route, Link, Switch} from "react-router-dom";
 import axios from "axios"
 import PictureDisplay from "./PictureDisplay";
 import './CSS/HomePage.css';
@@ -135,9 +137,6 @@ class HomePage extends React.Component {
         console.log(this.props)
         return (
             <div>
-                <form id = 'search' onSubmit = {this.handleSearchSubmit}>
-                    <input type = 'text'/>
-                </form>
                 <h1>Welcome {this.props.userName}</h1>
                 <h3>{this.props.email}</h3>
                 <form onSubmit={this.handleSubmit}>
@@ -157,6 +156,7 @@ class HomePage extends React.Component {
                 <PictureDisplay pictures={this.state.pictures}
                 // getHashtags = {this.hashtag}
                 />
+                <Link to = "/profile">Profile</Link>
             </div>
         )
 
