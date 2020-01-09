@@ -14,7 +14,8 @@ class Profile extends React.Component {
             imageFile: null,
             message: "",
             caption: "",
-            tags: ""
+            tags: "",
+            profileImage: ""
         }
     }
     getAllUserPictures = async () => {
@@ -47,7 +48,23 @@ class Profile extends React.Component {
         })
       }
     
-   
+    getProfileImage = async () => {
+        try {
+            const {username} = this.state
+            console.log("profile pic function")
+            console.log(username)
+
+            const res = await axios.get(`http://localhost:3001/images/profileImage/${username}`)
+            console.log(res.data.body)
+            console.log("hi")
+            this.setState({
+                profileImage: res.data.body[0].profileimage
+            })
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
 
     
 
@@ -102,7 +119,8 @@ class Profile extends React.Component {
     render() {
         return (
             <div>
-
+                <img src={this.state.profileImage} alt =""></img>
+                <button onClick={this.getProfileImage}>GetProfileImage</button>
                 <h1>Welcome {this.props.userName}</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input type="file" onChange={this.handleFileInput} required/>
