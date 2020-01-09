@@ -1,6 +1,6 @@
 import React from "react"
 import Profile from "./Profile"
-import {Route, Link, Switch} from "react-router-dom";
+import { Route, Link, Switch } from "react-router-dom";
 import axios from "axios"
 import PictureDisplay from "./PictureDisplay";
 import './CSS/HomePage.css';
@@ -23,33 +23,41 @@ class HomePage extends React.Component {
         }
     }
     getAllPictures = async () => {
-        const { pictures } = this.state
+        const { pictures, hashtags } = this.state
         let arr = [];
         let newArr = [];
         let response = await axios.get(`http://localhost:3001/images/`);
-        console.log('data', response.data.body)
-        console.log('pictures', pictures)
+
+        // console.log('data', response.data.body)
+        // console.log('pictures', pictures)
         arr = response.data.body
         arr.map((picture) => {
+            this.getHashtags(picture.id)
             newArr = [...newArr, picture]
 
         })
-        console.log(newArr)
+        // console.log(newArr)
         this.setState({
             pictures: newArr
         })
+
+        this.getHashtags()
+        // PFiorentino@project.com
     }
-    hashtag = async (image_id) => {
-        let newArr = []
-        let hashtags = await axios.get(`http://localhost:3001/hashtags/image/${image_id}`);
-        newArr = [hashtags.data.body]
-        newArr.map((hashtag) => {
-            // console.log(hashtag)
-            newArr = [...newArr, hashtag]
-        })
+    getHashtags = async () => {
+        const { hashtags, pictures } = this.state
+        let arr = [];
+        // console.log(pictures)
+        for (let i = 0; i < pictures.length; i++) {
+            let response = await axios.get(`http://localhost:3001/hashtags/image/${pictures[i].id}`);
+            let results = response.data.body
+            // console.log(results)
+            arr.push(results)
+        }
         this.setState({
-            hashtags: newArr
+            hashtags: arr
         })
+        // console.log(hashtags)
     }
     handleFileInput = (event) => {
         const { pictures, imageFile } = this.state
@@ -69,7 +77,7 @@ class HomePage extends React.Component {
             altText = `${username} uploaded a photo`
             console.log('false', altText)
         } else {
-             altText = alt
+            altText = alt
             console.log('true', altText)
         }
         try {
@@ -113,13 +121,17 @@ class HomePage extends React.Component {
         })
     }
     selectAlt = (event) => {
-        const {checkbox} = this.state
+        const { checkbox } = this.state
         this.setState({
             checkbox: !checkbox
         })
     }
-    componentDidUpdate(){
+    componentDidMount() {
+        console.log('mounted')
+    }
+    componentDidUpdate() {
         console.log('updated')
+
     }
     handleAltChange = (event) => {
         console.log('alt text changed', event.target.value)
@@ -133,10 +145,13 @@ class HomePage extends React.Component {
         })
     }
     render() {
-        const {checkbox} = this.state
+        const { checkbox } = this.state
         console.log(this.props)
         return (
             <div>
+                {/* <form>
+                    <input
+                </form> */}
                 <h1>Welcome {this.props.userName}</h1>
                 <h3>{this.props.email}</h3>
                 <form onSubmit={this.handleSubmit}>
@@ -147,16 +162,16 @@ class HomePage extends React.Component {
                     <label htmlFor='hashtag'>Hashtag <input name='hashtag' type='text' placeholder='Add hashtags' onChange={this.handleHashtagChange} /> </label>
                     <label htmlFor='alt'> Add alternate text<input name='alt' type='checkbox' value='checked' onChange={this.selectAlt} /></label>
                     {checkbox ?
-                    <input name='altText' type='text' placeholder='Add Alt text' onChange={this.handleAltChange} required/> : 
-                    null}
+                        <input name='altText' type='text' placeholder='Add Alt text' onChange={this.handleAltChange} required /> :
+                        null}
                     {/* <br></br> */}
                     <input type='submit' value='Upload' />
                 </form>
                 <button onClick={this.getAllPictures}>get picture</button>
                 <PictureDisplay pictures={this.state.pictures}
-                // getHashtags = {this.hashtag}
+                    hashtags={this.state.hashtags}
                 />
-                <Link to = "/profile">Profile</Link>
+                <Link to="/profile">Profile</Link>
             </div>
         )
 

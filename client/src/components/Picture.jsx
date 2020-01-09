@@ -2,6 +2,7 @@ import React from 'react';
 
 const Picture = (props) => {
     console.log('pic props', props)
+    // props.hashtags(props.id)
     return (
         <>
         <img
@@ -10,7 +11,7 @@ const Picture = (props) => {
         width = '300px'
         height = '300px'
         />
-         <p>{props.caption}</p> {/*#{props.hashtag}</p> */}
+         <p>{props.caption} {props.hashtag}</p>
         </>
     )
 }
