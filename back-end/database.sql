@@ -15,12 +15,13 @@ CREATE TABLE images (
     users_id INT REFERENCES users (id), 
     poster_name VARCHAR REFERENCES users (username), 
     image_url VARCHAR,
-    caption VARCHAR
+    caption VARCHAR,
+    alt VARCHAR
 );
 
 CREATE TABLE likes (
     image_id INT REFERENCES images (id),
-    liker_id INT REFERENCES users (id)
+    liker_name VARCHAR REFERENCES users (username)
 );
 
 CREATE TABLE hashtags (
@@ -37,21 +38,21 @@ CREATE TABLE comments (
 
 INSERT INTO users (username, email)
     VALUES ('JonathanFagan', 'JFagan@project.com'),
-           ('BriahanaMaugé', 'BMaugé@project.com'),
+           ('BriahanaMaugé', 'BMauge@project.com'),
            ('KadijahWilson', 'KWilson@project.com'),
            ('PeterFiorentino', 'PFiorentino@project.com');
 
-INSERT INTO images (users_id, poster_name, image_url, caption)
-    VALUES (1, 'JonathanFagan', 'https://newyorkknicksmemesdotcom.files.wordpress.com/2013/08/tmac.jpg', 'My favorite player.'),
-           (2, 'BriahanaMaugé', 'https://i.ytimg.com/vi/EUbAaeohpiA/maxresdefault.jpg', 'I do not just think he is cute. I like his music!'),
-           (3, 'KadijahWilson', 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/fulani-braids-1569510184.png?crop=0.503xw:1.00xh;0,0&resize=640:*', 'That is cute'),
-           (4, 'PeterFiorentino', 'https://www.rollingstone.com/wp-content/uploads/2018/06/rs-the-last-word-billy-joel-e7209123-22e1-4a8f-acff-136584bdb016.jpg?resize=900,600&w=450', 'The king.');
+INSERT INTO images (poster_name, image_url, caption, alt)
+    VALUES ('JonathanFagan', 'https://newyorkknicksmemesdotcom.files.wordpress.com/2013/08/tmac.jpg', 'My favorite player.', 'player on the knicks'),
+           ('BriahanaMaugé', 'https://i.ytimg.com/vi/EUbAaeohpiA/maxresdefault.jpg', 'I do not just think he is cute. I like his music!', 'chris brown'),
+           ('KadijahWilson', 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/fulani-braids-1569510184.png?crop=0.503xw:1.00xh;0,0&resize=640:*', 'That is cute', 'blue braids'),
+           ('PeterFiorentino', 'https://www.rollingstone.com/wp-content/uploads/2018/06/rs-the-last-word-billy-joel-e7209123-22e1-4a8f-acff-136584bdb016.jpg?resize=900,600&w=450', 'The king.', 'billy joel');
 
-INSERT INTO likes (image_id, liker_id)
-    VALUES (1,2),
-           (2,1),
-           (3,4),
-           (4,3);
+INSERT INTO likes (image_id, liker_name)
+    VALUES (1,'BriahanaMaugé'),
+           (2,'JonathanFagan'),
+           (3,'PeterFiorentino'),
+           (4,'KadijahWilson');
 
 
 INSERT INTO hashtags (hashtag, image_id)
