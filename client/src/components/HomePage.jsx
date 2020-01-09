@@ -15,11 +15,12 @@ class HomePage extends React.Component {
             hashtags: [],
             imageFile: null,
             uploadedCaption: '',
-            uploadedHashtag: [],
+            uploadedHashtag: "",
             message: '',
             checkbox: false,
             alt: '',
-            search: ''
+            search: '',
+            id: 0
 
         }
     }
@@ -29,9 +30,10 @@ class HomePage extends React.Component {
         let newArr = [];
         let response = await axios.get(`http://localhost:3001/images/`);
 
-        console.log('data', response.data.body)
-        // console.log('pictures', pictures)
+        // console.log('data', response.data.body)
+        
         arr = response.data.body
+        console.log(arr)
         arr.map((picture) => {
             this.getHashtags(picture.id)
             newArr = [...newArr, picture]
@@ -69,9 +71,9 @@ class HomePage extends React.Component {
         })
         console.log(imageFile)
     }
-    imgToDatabase = async () => {
+    imgToDatabase = async (id) => {
         console.log("hi")
-        const { username, imageURL, uploadedCaption, checkbox, alt } = this.state;
+        const { username, imageURL, uploadedCaption, checkbox, alt} = this.state;
         console.log(username, imageURL, uploadedCaption, checkbox)
         let altText = ''
         if (!checkbox) {
@@ -83,14 +85,17 @@ class HomePage extends React.Component {
         }
         try {
             console.log("hi try")
+            debugger
             const res = await axios.post('http://localhost:3001/images/upload', {poster_name: username, image_url: imageURL, caption: uploadedCaption, alt: altText })
-            console.log(res.data.body)
+            // console.log(res.data.body)
+            this.postHashtag(id);
         } catch (err) {
             console.log(err)
         }
     }
     handleSubmit = async (event) => {
         event.preventDefault();
+        const { id } = this.state
         const data = new FormData();
         console.log(data)
         data.append("image", this.state.imageFile)
@@ -103,9 +108,23 @@ class HomePage extends React.Component {
                 message: "Image uploaded!"
             })
 
-            this.imgToDatabase();
+            this.imgToDatabase(id);
+            
         } catch (err) {
             console.error(err)
+        }
+        this.setState({
+            id: parseInt(id) + 1
+        })
+    }
+    postHashtag = async (id) => {
+        const { uploadedHashtag } = this.state
+        console.log('id', id)
+        debugger
+        try {
+            const res = await axios.post('http://localhost:3001/hashtags/upload', { hashtag: uploadedHashtag, image_id: id })
+        } catch (err) {
+            console.log(err)
         }
     }
     handleCaptionChange = (event) => {
@@ -127,7 +146,9 @@ class HomePage extends React.Component {
         })
     }
     componentDidMount() {
+        
         console.log('mounted')
+        this.countImage()
     }
     componentDidUpdate() {
         console.log('updated')
@@ -144,9 +165,22 @@ class HomePage extends React.Component {
             search: event.target.value
         })
     }
+    countImage = async() => {
+        try {
+            
+            // debugger
+            const res = await axios.get('http://localhost:3001/images/count')
+            console.log(res.data.body[0].id)
+            console.log("hi try")
+            this.setState({
+                id: res.data.body[0].id + 1
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
     render() {
         const { checkbox } = this.state
-        console.log(this.props)
         return (
             <div>
                 {/* <form>

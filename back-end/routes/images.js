@@ -23,6 +23,20 @@ const allPhotos = async (req, res, next) => {
         message: `There was an error!`
     }
 }
+const count = async (req, res, next) => {
+    try {
+        const selectQuery = `SELECT id FROM images WHERE id = (SELECT MAX(id) FROM images);`
+        let response = await db.any(selectQuery)
+        res.json({
+            status: "success",
+            message: "photos retrieved",
+            body: response
+        });
+    }
+    catch (error) {
+        message: `There was an error!`
+    }
+}
 const singlePhoto = async (req, res, next) => {
     try {
         image = req.params.image
@@ -57,6 +71,7 @@ const allUserPhotos = async (req, res, next) => {
 const postPhoto = async (req, res, next) => {
     console.log("upload req body", req.body)
     try {
+        let id = req.body.id
         let poster = req.body.poster_name;
         let url = req.body.image_url;
         let caption = req.body.caption;
@@ -76,8 +91,10 @@ const postPhoto = async (req, res, next) => {
 
 
 
+
 /* ROUTES */
 
+router.get("/count", count)
 router.get("/:image", singlePhoto); //get single photo
 router.get("/users/:poster_name", allUserPhotos); // get all user's photos
 router.post("/upload", postPhoto); // adds a single photo to a user
