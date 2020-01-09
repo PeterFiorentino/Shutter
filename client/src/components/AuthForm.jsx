@@ -5,7 +5,6 @@ import './CSS/AuthForm.css';
 
 
 
-
 class AuthForm extends React.Component {
     
     
@@ -18,14 +17,13 @@ class AuthForm extends React.Component {
     render(){
         return(
         <div className = "img">
-            <img src="https://premiumbpthemes.com/images/clipart-camera-square-8.png" alt="camera"/>
+            <img id="camera" src="https://premiumbpthemes.com/images/clipart-camera-square-8.png" alt="camera"/>
         
         <div className = "AppTwo">
-                <h1>Shutter</h1>
+                {/* <h1>Shutter</h1> */}
                 <form onSubmit = {this.handleSubmit}>
-                    <input type ="text" placeholder = "Enter Email" required ></input>
-
-                    <button>Login</button>
+                    <input className= "login" type ="text" placeholder = "Enter Email" required ></input>
+                    <button className="loginBtn">Login</button>
                 </form>
                 </div>
             </div>

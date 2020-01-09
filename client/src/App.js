@@ -44,18 +44,13 @@ class App extends React.Component {
       if (!userLoggedIn){
         return(
         <div className = "App">
-
-        <header>
-          <div className = "headerLinks">
-          
-            <Link to = "/"> Shutter </Link>
-
+        
+         <h1> Shutter </h1>
+            <button className="signBtn">
             <Link to = "/SignUp">Sign Up</Link>
+            </button>
+            
           
-          </div>
-
-          </header>
-                
           <Switch>
           {/* home page route for when the user is not logged in*/}
           <Route exact path = "/"   
@@ -76,9 +71,10 @@ class App extends React.Component {
             }
           }/>
           </Switch>
-        </div>
+          </div>
         )
-      }else{
+              
+        }else{
       
       return(
         <div className = "App">

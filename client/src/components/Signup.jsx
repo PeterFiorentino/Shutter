@@ -1,6 +1,7 @@
 import React from "react"
 import {Route} from 'react-router-dom'
 import './CSS/Signup.css';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class SignUp extends React.Component{
     constructor(){
@@ -38,28 +39,44 @@ class SignUp extends React.Component{
         let {email, username} = this.state
 
         return (
-            <div>
-                <h1>Sign Up</h1>
+           
+            <div className= "createAcc">
+            
+                <h1>Create Account </h1>
                 <form onSubmit = {this.handleFormSubmit}>
-                    <label htmlFor = "email">Email Address </label>
-                    <input  
+                    
+                <i  class="fas fa-user icon"></i>
+                <label htmlFor = "name ">Name:  </label>
+                    <input className="signupForm"
+                    id = "name" 
+                    type = "text"
+                    // value = {name}
+                    placeholder = "Enter Name" 
+                    required = "required"/>
+                    <br/>
+
+                    <i  class="fas fa-envelope icon"></i>
+                    <label htmlFor = "email"> Email: </label>
+                    <input  className="signupForm"
                     id = "email" 
                     type = "email"
                     value = {email}
                     onChange = {this.handleEmailChange} 
-                    placeholder = "enter email" 
-                    required />
-                    <br/>
-                    <label htmlFor = "username">User Name </label>
-                    <input  
+                    placeholder =  "Enter Email" 
+                    required = "required"/>
+                    <br/> 
+
+                    <i id="input-icon" class="fas fa-check"></i>
+                    <label htmlFor = "username">Username: </label>
+                    <input  className="signupForm"
                     id = "username" 
                     type = "text" 
                     value = {username}
                     onChange = {this.handleUserNameChange}
-                    placeholder = "enter UserName" 
-                    required />
+                    placeholder = "Enter Username" 
+                    required = "required"/>
                     <br/>
-                    <button>Submit</button>
+                    <button id="createButton"> Create Account </button>
                 </form>
             </div>
         )
