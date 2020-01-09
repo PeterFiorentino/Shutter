@@ -32,7 +32,7 @@ const singleHashtagAllPhotos = async (req, res, next) => {
         res.json({
             status: "success",
             message: "all photos for single hashtag",
-            body: response
+            body: response.hashtag
         });
     } catch (error) {
         message: `There was an error!`
