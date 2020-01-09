@@ -12,7 +12,7 @@ const log = console.log;
 const allHashtags = async (req, res, next) => {
     try {
         let image_id = parseInt(req.params.image_id)
-        const selectQuery = `SELECT hashtag FROM hashtags WHERE image_id = $1;`;
+        const selectQuery = `SELECT * FROM hashtags WHERE image_id = $1;`;
         let response = await db.any(selectQuery, image_id);
         res.json({
             status: "success",
