@@ -4,9 +4,6 @@ body, .root, .App {
 
 .App {
   text-align: center;
-  display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 25% 25% 25% 25%;
 }
 
 .headerLinks {
@@ -22,14 +19,6 @@ font-size: 30px;
 }
 
 .signBtn{
-  margin-left: 200px;
-  margin-top: 82px;
-  /* position: absolute;
-  top: 38vh;
-  right: 30vh; */
-  /* bottom: 0%; */
-    /* color: #1da1f2; */
-    
     display: grid;
     grid-column-start: 3;
     grid-column-end: 4;
@@ -40,11 +29,9 @@ font-size: 30px;
     padding: 5px;
     font-size: 15px;
     font-weight: bold;
-    /* line-height: 20px; */
-    /* position: relative; */
     text-align: center;
     width: 70px;
     height: 40px;
-    z-index: 52;
+    z-index: 99;
 }
 
