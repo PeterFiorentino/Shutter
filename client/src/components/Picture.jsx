@@ -1,8 +1,6 @@
 import React from 'react';
 
 const Picture = (props) => {
-    console.log('pic props', props)
-    // props.hashtags(props.id)
     return (
         <>
         <img
