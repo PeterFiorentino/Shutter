@@ -1,5 +1,6 @@
 import React from 'react';
 import Picture from './Picture';
+import Interactions from './Interactions'
 
 const PictureDisplay = (props) => {
     let properHashtag = [];
@@ -7,6 +8,7 @@ const PictureDisplay = (props) => {
 
     return (
         props.pictures.map((picture) => {
+         filteredHashtag = '';
             props.hashtags.map((hashtag) => {
                 for (let i = 0; i < hashtag.length; i++) {
                     if (!properHashtag.includes(hashtag[i]) && (hashtag[i].image_id === picture.id)) {
@@ -14,24 +16,23 @@ const PictureDisplay = (props) => {
                     }
                 }
             })
-
-            filteredHashtag = '';
             for (let i = 0; i < properHashtag.length; i++) {
                 if (properHashtag[i].image_id === picture.id) {
                     filteredHashtag += `#${properHashtag[i].hashtag} `;
                 }
+                
             }
 
             return (
+                <div id = 'picture'>
                 <Picture url={picture.image_url}
                     id={picture.id}
                     key={picture.id}
                     alt={picture.alt}
-                    caption={picture.caption}
-                    hashtag={filteredHashtag}
-                    username={picture.poster_name}
 
                 />
+                <Interactions username={picture.poster_name} caption={picture.caption} hashtag={filteredHashtag} id={picture.id}/>
+            </div>
             )
         }
         )
