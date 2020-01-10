@@ -183,6 +183,7 @@ class HomePage extends React.Component {
         const { checkbox } = this.state
         return (
             <div>
+                <Link to="/profile">Profile</Link>
                 {/* <form>
                     <input
                 </form> */}
@@ -202,10 +203,12 @@ class HomePage extends React.Component {
                     <input type='submit' value='Upload' />
                 </form>
                 <button onClick={this.getAllPictures}>get picture</button>
+                <div id = 'homepage'>
                 <PictureDisplay pictures={this.state.pictures}
                     hashtags={this.state.hashtags}
                 />
-                <Link to="/profile">Profile</Link>
+                </div>
+                
             </div>
         )
 

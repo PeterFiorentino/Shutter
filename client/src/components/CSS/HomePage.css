@@ -1,0 +1,17 @@
+.picture{
+   flex-wrap: wrap;
+}
+/* #homepage{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 600px;
+    position: relative;
+    margin-left: 0px;
+} */
+.root{
+    text-align: start;
+}
+#homepage{display: inline-flex;
+    flex-wrap: wrap;
+}
