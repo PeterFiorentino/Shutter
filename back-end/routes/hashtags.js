@@ -38,10 +38,27 @@ const singleHashtagAllPhotos = async (req, res, next) => {
         message: `There was an error!`
     }
 }
+const addHashtag = async (req, res, next) => {
+    try {
+        let hashtag = `${req.body.hashtag}`;
+        let id = parseInt(req.body.image_id);
+        let insertQuery = `INSERT INTO hashtags (hashtag, image_id) 
+        VALUES ($1, $2)`
+        let response = await db.none(insertQuery, [hashtag, id])
+        res.json({
+            status: "success",
+            message: "hashtag posted"
+        });
+    }
+    catch (error) {
+        message: `There was an error!`
+    }
+}
 
 /* ROUTES */
 router.get("/image/:image_id", allHashtags); // gets all hashtags
 router.get("/?word=:word", singleHashtagAllPhotos); // get all  photos for one hashtag
+router.post("/upload/", addHashtag);
 
 
 
