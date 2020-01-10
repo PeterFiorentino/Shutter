@@ -85,10 +85,10 @@ class HomePage extends React.Component {
         }
         try {
             console.log("hi try")
-            debugger
             const res = await axios.post('http://localhost:3001/images/upload', {poster_name: username, image_url: imageURL, caption: uploadedCaption, alt: altText })
             // console.log(res.data.body)
             this.postHashtag(id);
+            this.getAllPictures() 
         } catch (err) {
             console.log(err)
         }
@@ -116,13 +116,15 @@ class HomePage extends React.Component {
         this.setState({
             id: parseInt(id) + 1
         })
+        
+
     }
     postHashtag = async (id) => {
         const { uploadedHashtag } = this.state
         console.log('id', id)
-        debugger
         try {
             const res = await axios.post('http://localhost:3001/hashtags/upload', { hashtag: uploadedHashtag, image_id: id })
+            this.getAllPictures()
         } catch (err) {
             console.log(err)
         }
@@ -149,10 +151,11 @@ class HomePage extends React.Component {
         
         console.log('mounted')
         this.countImage()
+       this.getAllPictures() 
     }
     componentDidUpdate() {
         console.log('updated')
-
+        
     }
     handleAltChange = (event) => {
         console.log('alt text changed', event.target.value)
@@ -202,7 +205,7 @@ class HomePage extends React.Component {
                     {/* <br></br> */}
                     <input type='submit' value='Upload' />
                 </form>
-                <button onClick={this.getAllPictures}>get picture</button>
+                {/* <button onClick={this.getAllPictures}>get picture</button> */}
                 <div id = 'homepage'>
                 <PictureDisplay pictures={pictures}
                     hashtags={hashtags}
