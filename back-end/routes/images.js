@@ -80,8 +80,7 @@ const postPhoto = async (req, res, next) => {
         await db.none(insertQuery, [poster, url, caption, alt])
         res.json({
             status: "success",
-            message: "single user photos retrieved",
-            body: response
+            message: "single user photos posted"
         });
     }
     catch (error) {
