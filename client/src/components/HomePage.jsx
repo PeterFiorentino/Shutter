@@ -180,14 +180,14 @@ class HomePage extends React.Component {
         }
     }
     render() {
-        const { checkbox } = this.state
+        const { checkbox, username, hashtags, pictures } = this.state
         return (
             <div>
                 <Link to="/profile">Profile</Link>
                 {/* <form>
                     <input
                 </form> */}
-                <h1>Welcome {this.props.userName}</h1>
+                <h1>Welcome {username}</h1>
                 <h3>{this.props.email}</h3>
                 <form onSubmit={this.handleSubmit}>
                     <input type='file' onChange={this.handleFileInput} required />
@@ -204,8 +204,8 @@ class HomePage extends React.Component {
                 </form>
                 <button onClick={this.getAllPictures}>get picture</button>
                 <div id = 'homepage'>
-                <PictureDisplay pictures={this.state.pictures}
-                    hashtags={this.state.hashtags}
+                <PictureDisplay pictures={pictures}
+                    hashtags={hashtags}
                 />
                 </div>
                 

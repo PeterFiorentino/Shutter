@@ -32,6 +32,7 @@ const PictureDisplay = (props) => {
                     alt={picture.alt}
                     caption={picture.caption}
                     hashtag={filteredHashtag}
+                    username = {picture.poster_name}
 
                 />
             )

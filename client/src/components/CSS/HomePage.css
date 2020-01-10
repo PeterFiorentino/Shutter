@@ -1,5 +1,5 @@
 .picture{
-   flex-wrap: wrap;
+   border: 1px black solid;
 }
 /* #homepage{
     display: flex;

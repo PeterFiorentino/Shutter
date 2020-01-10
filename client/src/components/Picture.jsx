@@ -3,6 +3,7 @@ import React from 'react';
 const Picture = (props) => {
     return (
         <div className = 'picture'>
+        <h4>{props.username}</h4>
         <img 
         src = {props.url}
         alt = {props.alt}
