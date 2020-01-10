@@ -20,7 +20,8 @@ class HomePage extends React.Component {
             checkbox: false,
             alt: '',
             search: '',
-            id: 0
+            id: 0,
+            likes: ''
 
         }
     }
@@ -31,11 +32,12 @@ class HomePage extends React.Component {
         let response = await axios.get(`http://localhost:3001/images/`);
 
         // console.log('data', response.data.body)
-        
+
         arr = response.data.body
         console.log(arr)
         arr.map((picture) => {
             this.getHashtags(picture.id)
+            // this.getLikes(picture.id)
             newArr = [...newArr, picture]
 
         })
@@ -45,6 +47,7 @@ class HomePage extends React.Component {
         })
 
         this.getHashtags()
+        // this.getLikes()
         // PFiorentino@project.com
     }
     getHashtags = async () => {
@@ -62,161 +65,165 @@ class HomePage extends React.Component {
         })
         // console.log(hashtags)
     }
-    handleFileInput = (event) => {
-        const { pictures, imageFile } = this.state
-        console.log('file changed')
-        console.log(event.target)
-        this.setState({
-            imageFile: event.target.files[0]
-        })
-        console.log(imageFile)
-    }
-    imgToDatabase = async (id) => {
-        console.log("hi")
-        const { username, imageURL, uploadedCaption, checkbox, alt} = this.state;
-        console.log(username, imageURL, uploadedCaption, checkbox)
-        let altText = ''
-        if (!checkbox) {
-            altText = `${username} uploaded a photo`
-            console.log('false', altText)
-        } else {
-            altText = alt
-            console.log('true', altText)
-        }
-        try {
-            console.log("hi try")
-            const res = await axios.post('http://localhost:3001/images/upload', {poster_name: username, image_url: imageURL, caption: uploadedCaption, alt: altText })
-            // console.log(res.data.body)
-            this.postHashtag(id);
-            this.getAllPictures() 
-        } catch (err) {
-            console.log(err)
-        }
-    }
-    handleSubmit = async (event) => {
-        event.preventDefault();
-        const { id } = this.state
-        const data = new FormData();
-        console.log(data)
-        data.append("image", this.state.imageFile)
-        console.log(data)
-        try {
-            const res = await axios.post('http://localhost:3001/upload', data)
-            // console.log(res.data)
+
+        handleFileInput = (event) => {
+            const { pictures, imageFile } = this.state
+            console.log('file changed')
+            console.log(event.target)
             this.setState({
-                imageURL: res.data.imageUrl,
-                message: "Image uploaded!"
+                imageFile: event.target.files[0]
+            })
+            console.log(imageFile)
+        }
+        imgToDatabase = async (id) => {
+            console.log("hi")
+            const { username, imageURL, uploadedCaption, checkbox, alt } = this.state;
+            console.log(username, imageURL, uploadedCaption, checkbox)
+            let altText = ''
+            if (!checkbox) {
+                altText = `${username} uploaded a photo`
+                console.log('false', altText)
+            } else {
+                altText = alt
+                console.log('true', altText)
+            }
+            try {
+                console.log("hi try")
+                const res = await axios.post('http://localhost:3001/images/upload', { poster_name: username, image_url: imageURL, caption: uploadedCaption, alt: altText })
+                // console.log(res.data.body)
+                this.postHashtag(id);
+                this.getAllPictures()
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        handleSubmit = async (event) => {
+            event.preventDefault();
+            const { id } = this.state
+            const data = new FormData();
+            console.log(data)
+            data.append("image", this.state.imageFile)
+            console.log(data)
+            try {
+                const res = await axios.post('http://localhost:3001/upload', data)
+                // console.log(res.data)
+                this.setState({
+                    imageURL: res.data.imageUrl,
+                    message: "Image uploaded!"
+                })
+
+                this.imgToDatabase(id);
+
+            } catch (err) {
+                console.error(err)
+            }
+            this.setState({
+                id: parseInt(id) + 1
             })
 
-            this.imgToDatabase(id);
-            
-        } catch (err) {
-            console.error(err)
-        }
-        this.setState({
-            id: parseInt(id) + 1
-        })
-        
 
-    }
-    postHashtag = async (id) => {
-        const { uploadedHashtag } = this.state
-        console.log('id', id)
-        try {
-            const res = await axios.post('http://localhost:3001/hashtags/upload', { hashtag: uploadedHashtag, image_id: id })
+        }
+        postHashtag = async (id) => {
+            const { uploadedHashtag } = this.state
+            console.log('id', id)
+            try {
+                const res = await axios.post('http://localhost:3001/hashtags/upload', { hashtag: uploadedHashtag, image_id: id })
+                this.getAllPictures()
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        handleCaptionChange = (event) => {
+            console.log("caption changed", event.target.value)
+            this.setState({
+                uploadedCaption: event.target.value
+            })
+        }
+        handleHashtagChange = (event) => {
+            console.log("caption changed", event.target.value)
+            this.setState({
+                uploadedHashtag: event.target.value
+            })
+        }
+        selectAlt = (event) => {
+            const { checkbox } = this.state
+            this.setState({
+                checkbox: !checkbox
+            })
+        }
+        componentDidMount() {
+
+            console.log('mounted')
+            this.countImage()
             this.getAllPictures()
-        } catch (err) {
-            console.log(err)
+
         }
-    }
-    handleCaptionChange = (event) => {
-        console.log("caption changed", event.target.value)
-        this.setState({
-            uploadedCaption: event.target.value
-        })
-    }
-    handleHashtagChange = (event) => {
-        console.log("caption changed", event.target.value)
-        this.setState({
-            uploadedHashtag: event.target.value
-        })
-    }
-    selectAlt = (event) => {
-        const { checkbox } = this.state
-        this.setState({
-            checkbox: !checkbox
-        })
-    }
-    componentDidMount() {
-        
-        console.log('mounted')
-        this.countImage()
-       this.getAllPictures() 
-    }
-    componentDidUpdate() {
-        console.log('updated')
-        
-    }
-    handleAltChange = (event) => {
-        console.log('alt text changed', event.target.value)
-        this.setState({
-            alt: event.target.value
-        })
-    }
-    handleSearchChange = (event) => {
-        this.setState({
-            search: event.target.value
-        })
-    }
-    countImage = async() => {
-        try {
-            
-            // debugger
-            const res = await axios.get('http://localhost:3001/images/count')
-            console.log(res.data.body[0].id)
-            console.log("hi try")
+        componentDidUpdate() {
+            console.log('updated')
+
+        }
+        handleAltChange = (event) => {
+            console.log('alt text changed', event.target.value)
             this.setState({
-                id: res.data.body[0].id + 1
+                alt: event.target.value
             })
-        } catch (err) {
-            console.log(err)
         }
-    }
-    render() {
-        const { checkbox, username, hashtags, pictures } = this.state
-        return (
-            <div>
-                <Link to="/profile">Profile</Link>
-                {/* <form>
+        handleSearchChange = (event) => {
+            this.setState({
+                search: event.target.value
+            })
+        }
+        countImage = async () => {
+            try {
+
+                // debugger
+                const res = await axios.get('http://localhost:3001/images/count')
+                console.log(res.data.body[0].id)
+                console.log("hi try")
+                this.setState({
+                    id: res.data.body[0].id + 1
+                })
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        render() {
+            const { checkbox, username, hashtags, pictures } = this.state
+            return (
+                <div>
+                    <Link to="/profile">Profile</Link>
+                    {/* <form>
                     <input
                 </form> */}
-                <h1>Welcome {username}</h1>
-                <h3>{this.props.email}</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <input type='file' onChange={this.handleFileInput} required />
-                    {/* <br></br> */}
-                    <label htmlFor='caption'>Caption <input name='caption' type='text' placeholder='Enter a caption' onChange={this.handleCaptionChange} /> </label>
-                    {/* <br></br> */}
-                    <label htmlFor='hashtag'>Hashtag <input name='hashtag' type='text' placeholder='Add hashtags' onChange={this.handleHashtagChange} /> </label>
-                    <label htmlFor='alt'> Add alternate text<input name='alt' type='checkbox' value='checked' onChange={this.selectAlt} /></label>
-                    {checkbox ?
-                        <input name='altText' type='text' placeholder='Add Alt text' onChange={this.handleAltChange} required /> :
-                        null}
-                    {/* <br></br> */}
-                    <input type='submit' value='Upload' />
-                </form>
-                {/* <button onClick={this.getAllPictures}>get picture</button> */}
-                <div id = 'homepage'>
-                <PictureDisplay pictures={pictures}
-                    hashtags={hashtags}
-                />
+                    <h1>Welcome {username}</h1>
+                    <h3>{this.props.email}</h3>
+                    <form onSubmit={this.handleSubmit}>
+                        <input type='file' onChange={this.handleFileInput} required />
+                        {/* <br></br> */}
+                        <label htmlFor='caption'>Caption <input name='caption' type='text' placeholder='Enter a caption' onChange={this.handleCaptionChange} /> </label>
+                        {/* <br></br> */}
+                        <label htmlFor='hashtag'>Hashtag <input name='hashtag' type='text' placeholder='Add hashtags' onChange={this.handleHashtagChange} /> </label>
+                        <label htmlFor='alt'> Add alternate text<input name='alt' type='checkbox' value='checked' onChange={this.selectAlt} /></label>
+                        {checkbox ?
+                            <input name='altText' type='text' placeholder='Add Alt text' onChange={this.handleAltChange} required /> :
+                            null}
+                        {/* <br></br> */}
+                        <input type='submit' value='Upload' />
+                    </form>
+                    {/* <button onClick={this.getAllPictures}>get picture</button> */}
+                    <div id='homepage'>
+                        <PictureDisplay pictures={pictures}
+                            hashtags={hashtags}
+                        />
+                    </div>
+
                 </div>
-                
-            </div>
-        )
+            )
+
+        }
 
     }
 
-}
-
-export default HomePage
+    export default HomePage
