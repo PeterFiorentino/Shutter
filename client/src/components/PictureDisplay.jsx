@@ -3,6 +3,7 @@ import Picture from './Picture';
 import Interactions from './Interactions'
 
 const PictureDisplay = (props) => {
+    console.log(props)
     let properHashtag = [];
     let filteredHashtag = "";
 
@@ -31,7 +32,7 @@ const PictureDisplay = (props) => {
                     alt={picture.alt}
 
                 />
-                <Interactions username={picture.poster_name} caption={picture.caption} hashtag={filteredHashtag} id={picture.id}/>
+                <Interactions username = {props.username} poster_name={picture.poster_name} caption={picture.caption} hashtag={filteredHashtag} id={picture.id}/>
             </div>
             )
         }

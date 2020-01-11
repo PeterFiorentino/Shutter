@@ -216,6 +216,7 @@ class HomePage extends React.Component {
                     <div id='homepage'>
                         <PictureDisplay pictures={pictures}
                             hashtags={hashtags}
+                            username = {username}
                         />
                     </div>
 
