@@ -36,7 +36,6 @@ const PictureDisplay = (props) => {
                     hashtag = {filteredHashtag}
 
                 />
-                {/* <Interactions username = {props.username} poster_name={picture.poster_name} caption={picture.caption} hashtag={filteredHashtag} id={picture.id}/> */}
             </div>
             )
         }

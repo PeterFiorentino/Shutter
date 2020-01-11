@@ -19,13 +19,10 @@ class Interactions extends React.Component {
     getLikes = async () => {
         const { imageId, username } = this.state;
         const res = await axios.get(`http://localhost:3001/likes/images/${imageId}`);
-        console.log('get likes', imageId, res.data.payload.length)
-
+        // console.log('get likes', imageId, res.data.payload.length)
         if (res.data.payload.length >= 1) {
-            console.log('first if')
             for (let i = 0; i < res.data.payload.length; i++) {
                 if (username === res.data.payload[i].liker_name) {
-                    console.log('second if')
                     this.setState({
                         likeBtnPushed: 'add'
                     })
@@ -42,15 +39,6 @@ class Interactions extends React.Component {
         this.setState({
             likes: likeAmount
         })
-
-    }
-    getComments = async () => {
-        const { imageId } = this.state;
-        const res = await axios.get(`http://localhost:3001/comments/${imageId}`);
-        let comment = res
-        // this.setState({
-        //     likes: likeAmount
-        // })
     }
     makeOrTakeALike = async (event) => {
         const { likeBtnPushed, likes, imageId, username } = this.state;
@@ -67,10 +55,28 @@ class Interactions extends React.Component {
             this.setState({
                 likes: parseInt(likes),
                 likeBtnPushed: 'subtract'
-
             })
         }
     }
+    getComments = async () => {
+        const { imageId } = this.state;
+        const res = await axios.get(`http://localhost:3001/comments/${imageId}`);
+        let comment = res.data.payload
+        console.log(comment)
+        // this.setState({
+        //     likes: likeAmount
+        // })
+    }
+    countComments = async () => {
+        const { imageId } = this.state;
+        this.getComments()
+        const res = await axios.get(`http://localhost:3001/likes/images/count/${imageId}`)
+        let commentAmount = res.data.payload[0].count
+        this.setState({
+            likes: commentAmount
+        })
+    }
+
     componentDidMount = () => {
         this.countLikes();
         this.getComments();
