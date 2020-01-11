@@ -47,12 +47,8 @@ class App extends React.Component {
         return(
         <div className = "App">
         
-         <h1> Shutter </h1>
-            <button className="signBtn">
-            <Link to = "/SignUp">Sign Up</Link>
-            </button>
+        <h1 className="appName"> Shutter </h1>
             
-          
           <Switch>
           {/* home page route for when the user is not logged in*/}
           <Route exact path = "/"   

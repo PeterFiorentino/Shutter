@@ -1,50 +1,20 @@
-body, .root, .App {
-  height: 100vh;
+.appName {
+  font-family: "Monospace";
+  font-feature-settings: "c2sc";
+  font-variant: small-caps;
+  font-style: oblique;
+  font-size: 100px;
+  margin-top: 0;
+  margin-bottom: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-decoration: underline;
+  position: relative;
+  /* z-index: 8; */
 }
 
-.App {
-  text-align: center;
-  display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 25% 25% 25% 25%;
+::placeholder{
+  color: white;
+  font-size: 12px;
 }
-
-.headerLinks {
-margin-top: 0px;
-font-family: "Monospace";
-font-variant: small-caps;
-font-style: oblique;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-around;
-flex-direction: row;
-font-size: 30px;
-}
-
-.signBtn{
-  margin-left: 200px;
-  margin-top: 82px;
-  /* position: absolute;
-  top: 38vh;
-  right: 30vh; */
-  /* bottom: 0%; */
-    /* color: #1da1f2; */
-    
-    display: grid;
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    border-radius: 100px;
-    border-color: #1da1f2;
-    padding: 5px;
-    font-size: 15px;
-    font-weight: bold;
-    /* line-height: 20px; */
-    /* position: relative; */
-    text-align: center;
-    width: 70px;
-    height: 40px;
-    z-index: 52;
-}
-

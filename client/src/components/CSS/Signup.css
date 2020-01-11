@@ -1,51 +1,59 @@
-html {
-    background-color: #81907D;
-
+.createAcc {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+  border: 6px solid;
+background-color: #5BB2B1 ;
+width: 65%;
+margin-top: 50px;
+margin-left: 18%;
 }
 
-.createAcc {
-border: 6px solid;
-background-color: #e5c051 ;
-width: 65%;
-margin: 8%;
-position: absolute;
-left: 9%;
-z-index: 55;
+.createAcc > h1{
+  text-decoration: underline;
 }
 
 .signupForm {
-    /* width: 100%; */
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    text-align: center; 
-  }
+  /* display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;  */
+  width: 25%;
+  color: currentColor;
+  width: 100%;
+  border: 2;
+  border-color: #36152b;
+  margin: 0;
+  display: block;
+  padding: 6px 0 7px;
+  background: none;
+  text-align: center;
+}
 
-  #createButton {
-    /* width: 100%; */
-    background-color: rgb(101, 116, 101);
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+#createButton {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #36152b;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-  i {
-      position: absolute;
-  }
+i {
+  position: absolute;
+}
 
-  .icon {
-    padding: 17px;
-    min-width: 12vh;
-  }
-
-  #input-icon {
-    padding: 17px;
-    min-width: 18vh;
-  }
-
+.icon {
+  padding: 8px;
+  min-width: 5vh;
+}
