@@ -26,13 +26,25 @@ body {
 .form {
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
+    justify-content: center;
     align-items: center;
     width: 100%;
-    background-color:#65C2C1;
+    background-color:#5BB2B1;
     margin-top: -80px;
+    margin-bottom: -20px;
 }
 
-.loginBtn .SignBtn {
-    
+.loginBtn, .signBtn {
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    position: relative; 
+    margin-top: 20px;
+    width: 300px;
+}
+
+.loginBtn {
+    text-decoration: underline;
 }

@@ -24,8 +24,10 @@ class AuthForm extends React.Component {
 
             <div className="form">
             <form id="login" onSubmit = {this.handleSubmit}>
-                    <input className= "login" type ="text" placeholder = "Enter Email" required ></input>
-                    <button className="loginBtn">Login</button>
+            <input className= "login" type ="text" placeholder = "Enter Email" required ></input>
+            <br/>
+            <button className="loginBtn">Login</button>
+            <br/>
              <button className="signBtn">
             <Link to = "/SignUp">Sign Up</Link>
             </button>
