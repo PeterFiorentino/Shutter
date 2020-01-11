@@ -47,7 +47,7 @@ class App extends React.Component {
         return(
         <div className = "App">
         
-        <h1> Shutter </h1>
+        <h1 className="appName"> Shutter </h1>
             
           <Switch>
           {/* home page route for when the user is not logged in*/}
