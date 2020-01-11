@@ -1,12 +1,12 @@
 import React from 'react';
-import {Link,Route,Switch} from 'react-router-dom'
+import {Link,Route,Switch,Redirect} from 'react-router-dom'
 import './App.css';
 import AuthForm from "./components/AuthForm"
 import SignUp from "./components/Signup"
 import HomePage from "./components/HomePage"
 import Profile from "./components/Profile"
 import imageDisplay from './components/DisplayProfile';
-
+import Menu from "./components/hamburgerMenu"
 
 class App extends React.Component {
   constructor(){
@@ -68,6 +68,7 @@ class App extends React.Component {
               )
             }
           }/>
+          <Redirect to = "/" />
           </Switch>
           </div>
         )
@@ -78,7 +79,7 @@ class App extends React.Component {
         <div className = "App">
           <nav>
             <Link to = "/">Shutter</Link> {" "}
-            <button onClick = {this.signOut}>Sign Out</button>
+            <Menu signOut = {this.signOut}/>
           </nav>
             <Switch>
               
@@ -92,8 +93,10 @@ class App extends React.Component {
               <Route path = "/" render = {
                 (routeProps) =>{
                   return(
+                    
                     <HomePage userName = {this.state.userName}
                     email = {this.state.email}/>
+
                   )
                 }
               }/>
