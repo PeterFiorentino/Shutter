@@ -176,11 +176,7 @@ class HomePage extends React.Component {
         }
         countImage = async () => {
             try {
-
-                // debugger
                 const res = await axios.get('http://localhost:3001/images/count')
-                console.log(res.data.body[0].id)
-                console.log("hi try")
                 this.setState({
                     id: res.data.body[0].id + 1
                 })
@@ -188,7 +184,6 @@ class HomePage extends React.Component {
                 console.log(err)
             }
         }
-
         render() {
             const { checkbox, username, hashtags, pictures } = this.state
             return (
