@@ -18,17 +18,20 @@ class Interactions extends React.Component {
     }
     getLikes = async () => {
         const { imageId, username } = this.state;
-        this.makeOrTakeALike()
         const res = await axios.get(`http://localhost:3001/likes/images/${imageId}`);
-        console.log('get likes', imageId, res.data.payload[0])
-        if ((res.data.payload[0])) {
+        console.log('get likes', imageId, res.data.payload.length)
+
+        if (res.data.payload.length >= 1) {
             console.log('first if')
-            if (username === res.data.payload[0].liker_name) {
-                console.log('second if')
-                this.setState({
-                    likeBtnPushed: 'add'
-                })
+            for (let i = 0; i < res.data.payload.length; i++) {
+                if (username === res.data.payload[i].liker_name) {
+                    console.log('second if')
+                    this.setState({
+                        likeBtnPushed: 'add'
+                    })
+                }
             }
+
         }
     }
     countLikes = async () => {
@@ -51,17 +54,20 @@ class Interactions extends React.Component {
     }
     makeOrTakeALike = async (event) => {
         const { likeBtnPushed, likes, imageId, username } = this.state;
-        if (likeBtnPushed === 'subtract') {
+        if (likeBtnPushed === 'subtract' || likeBtnPushed === '') {
             const res = await axios.post('http://localhost:3001/likes/images', { liker_name: username, image_id: imageId })
             this.countLikes()
             this.setState({
                 likes: parseInt(likes),
                 likeBtnPushed: 'add'
             })
-        } else if (likeBtnPushed === 'add' || likeBtnPushed === '') {
+        } else if (likeBtnPushed === 'add') {
+            const res = await axios.delete(`http://localhost:3001/likes/images/${imageId}/${username}`)
+            this.countLikes()
             this.setState({
-                likeBtnPushed: 'subtract',
-                likes: parseInt(likes) - 1
+                likes: parseInt(likes),
+                likeBtnPushed: 'subtract'
+
             })
         }
     }
