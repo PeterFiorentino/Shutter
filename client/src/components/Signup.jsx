@@ -43,10 +43,12 @@ class SignUp extends React.Component{
             <div className= "createAcc">
             
                 <h1>Create Account </h1>
+                <br/>
+
                 <form onSubmit = {this.handleFormSubmit}>
                     
                 <i  className="fas fa-user icon"></i>
-                <label htmlFor = "name ">Name:  </label>
+                <label htmlFor = "name "> </label>
                     <input className="signupForm"
                     id = "name" 
                     type = "text"
@@ -56,7 +58,7 @@ class SignUp extends React.Component{
                     <br/>
 
                     <i  className="fas fa-envelope icon"></i>
-                    <label htmlFor = "email"> Email: </label>
+                    <label htmlFor = "email">  </label>
                     <input  className="signupForm"
                     id = "email" 
                     type = "email"
@@ -66,8 +68,8 @@ class SignUp extends React.Component{
                     required = "required"/>
                     <br/> 
 
-                    <i id="input-icon" className="fas fa-check"></i>
-                    <label htmlFor = "username">Username: </label>
+                    <i  className="fas fa-check icon" ></i>
+                    <label htmlFor = "username"> </label>
                     <input  className="signupForm"
                     id = "username" 
                     type = "text" 
