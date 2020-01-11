@@ -2,9 +2,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('./db.js');
 
-/* HELPERS */
-const log = console.log;
-
 
 
 
@@ -39,13 +36,13 @@ const count = async (req, res, next) => {
 }
 const singlePhoto = async (req, res, next) => {
     try {
-        image = req.params.image
+        let image = req.params.image
         const selectQuery = `SELECT * FROM images WHERE id = $1;`;
-        let response = await db.one(selectQuery, image);
+        let response = await db.any(selectQuery, image);
         res.json({
             status: "success",
             message: "photos retrieved",
-            body: response
+            payload: response
         });
     }
     catch (error) {
@@ -69,7 +66,6 @@ const allUserPhotos = async (req, res, next) => {
 }
 
 const postPhoto = async (req, res, next) => {
-    console.log("upload req body", req.body)
     try {
         let id = req.body.id
         let poster = req.body.poster_name;
