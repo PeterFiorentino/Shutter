@@ -16,17 +16,19 @@ class AuthForm extends React.Component {
 
     render(){
         return(
-        <div className = "img">
-            <img id="camera" src="https://premiumbpthemes.com/images/clipart-camera-square-8.png" alt="camera"/>
+        <div className = "container">
+              {/* <img id="camera" src="https://premiumbpthemes.com/images/clipart-camera-square-8.png" alt="camera"/> */}
         
         <div className = "AppTwo">
+            </div>
 
-                {/* <h1>Shutter</h1> */}
-                <form onSubmit = {this.handleSubmit}>
+            <div className="form">
+            <form id="login" onSubmit = {this.handleSubmit}>
                     <input className= "login" type ="text" placeholder = "Enter Email" required ></input>
                     <button className="loginBtn">Login</button>
                 </form>
-                </div>
+            </div>
+                
             </div>
         )
     }
