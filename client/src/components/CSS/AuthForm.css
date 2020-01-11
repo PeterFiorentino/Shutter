@@ -2,7 +2,6 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    /* background-color: #81907D; */
   }
 
 .container {
@@ -10,7 +9,7 @@ body {
     width: 100%;
     background-repeat: no-repeat;
     background-size: 50%;
-    /* background-position: center; */
+    background-position: 43% 115%;
     display: grid;
     grid-template-columns: 50% 50%;
 }
@@ -30,4 +29,10 @@ body {
     /* justify-content: space-between; */
     align-items: center;
     width: 100%;
+    background-color:#65C2C1;
+    margin-top: -80px;
+}
+
+.loginBtn .SignBtn {
+    
 }
