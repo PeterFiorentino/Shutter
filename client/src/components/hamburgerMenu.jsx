@@ -3,6 +3,7 @@ import "./CSS/hamburgerMenu.css"
 import Dropdown from "./CSS/hamburgerMenu.js"
 
 const Menu = (props) =>{
+    console.log("hamburger menu jsx triggered")
     return(
         <div className = "dropdown">
             
