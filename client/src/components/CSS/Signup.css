@@ -15,15 +15,6 @@ margin-left: 18%;
 }
 
 .signupForm {
-  /* display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 12px 20px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  text-align: center;  */
   width: 25%;
   color: currentColor;
   width: 100%;
@@ -49,11 +40,9 @@ margin-left: 18%;
   cursor: pointer;
 }
 
-i {
-  position: absolute;
-}
 
 .icon {
+  position: absolute;
   padding: 8px;
   min-width: 5vh;
 }
