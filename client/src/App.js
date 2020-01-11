@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link,Route,Switch} from 'react-router-dom'
+import {Link,Route,Switch,Redirect} from 'react-router-dom'
 import './App.css';
 import AuthForm from "./components/AuthForm"
 import SignUp from "./components/Signup"
@@ -72,6 +72,7 @@ class App extends React.Component {
               )
             }
           }/>
+          <Redirect to = "/" />
           </Switch>
           </div>
         )
@@ -96,8 +97,10 @@ class App extends React.Component {
               <Route path = "/" render = {
                 (routeProps) =>{
                   return(
+                    
                     <HomePage userName = {this.state.userName}
                     email = {this.state.email}/>
+
                   )
                 }
               }/>
